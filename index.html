@@ -359,7 +359,7 @@
 							▸ true
 								
 							{ item: "test" } === { item: "test" }
-							▸ true
+							▸ false
 						</code></pre>
 						<ul>
 							<li>have a list of properties that are key-value pairs: key (String, Symbol) ⇔ value (any)</li>
@@ -403,7 +403,7 @@
 							Object.assign(obj, { c: 3, d: 4}, {d: 5});
 								▸ {key: "value", a: 1, b: 2, c: 3, d: 5}
 
-							Object.fromEntries([ ['a', 1], ['b', 1]]);
+							Object.fromEntries([ ['a', 1], ['b', 2]]);
 								▸ {a: 1, b: 2}
 						</code></pre>
 						<aside  class="note info">
@@ -438,7 +438,7 @@
 									writable: false
 								});
 
-								Object.defineProperty(obj, {
+								Object.defineProperties(obj, {
 									b: { enumerable: true, value: 2 },
 									c: { get: function(){ return 3 } },
 								});
@@ -576,7 +576,7 @@
 						<span class="ref">Exercise 5</span>
 						<pre><code class="javascript hljs" data-trim>
 							for (var i = 1; i&lt;=3; i++) {
-								setTimeOut( function timer(){
+								setTimeout( function timer(){
 									console.log( i );
 								}, i*1000 );
 							}
