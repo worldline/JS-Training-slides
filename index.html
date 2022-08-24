@@ -1052,7 +1052,7 @@
 								console.log({ strings, vars });
 
 								return strings.reduce(
-									(out, str, i) => `${out}${str}=${vars[i] || "").toUpperCase()}`
+									(out, str, i) => `${out}${str}${vars[i] || "").toUpperCase()}`
 								)
 							}
 						</code></pre>
