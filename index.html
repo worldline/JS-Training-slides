@@ -1048,11 +1048,11 @@
 						<span class="ref">Exercise 10</span>
 						<p>If a function reference precedes a template string literal, that function is invoked with the static and dynamic parts of the following string:</p>
 						<pre style="font-size: 80%"><code class="javascript hljs" data-trim>
-							function insertInUpperCase(string, ...vars) {
+							function insertInUpperCase(strings, ...vars) {
 								console.log({ strings, vars });
 
 								return strings.reduce(
-									(out, str, i) => `${out}${str}={vars[i] || "").toUpperCase()}`
+									(out, str, i) => `${out}${str}=${vars[i] || "").toUpperCase()}`
 								)
 							}
 						</code></pre>
