@@ -1444,10 +1444,9 @@ async function myFunction() {
 
 					<section>
 						<h3>Observable</h3>
-						<p>A pattern halfway between Promise and Pub/Sub:
-							<ul><li>Promise that can be resolved in several stages</li>
-							<li>Event emitter with a completion concept</li>
-						</ul></p>
+						<p>A pattern halfway between Promise and Pub/Sub</p>
+						<p>Observables can return multiple values over time.</p>
+						<p>They can have a completed state, after which no value is no longer emitted.</p>
 						<div class="center">
 							<img src="assets/img/observable-en.png" alt="Timeline of an observable" />
 						</div>
@@ -2115,14 +2114,14 @@ Symbol.keyFor(symbolFoo)
 						</ul>
 						<div class="cols-2">
 							<pre style="font-size: 60%"><code class="javascript hljs js" data-trim>
-const compteur123 = {
+const counter123 = {
 	[Symbol.iterator]: function(){
-		let nombres = [1, 2, 3]
+		let numbers = [1, 2, 3]
 		return {
 			next(){
 				return {
-					done: nombres.length === 0,
-					value: nombres.shift()
+					done: numbers.length === 0,
+					value: numbers.shift()
 				}
 			}
 		}
@@ -2130,12 +2129,12 @@ const compteur123 = {
 }
 						</code></pre>
 						<pre style="font-size: 60%"><code class="javascript hljs js" data-trim>
-for(let n of compteur123) console.log(n);
+for(let n of counter123) console.log(n);
 ▸ 1
 ▸ 2
 ▸ 3
 
-[...compteur123]
+[...counter123]
 ▸ [1, 2, 3]
 						</code></pre>
 						</div>
@@ -2146,14 +2145,14 @@ for(let n of compteur123) console.log(n);
 						<div class="ref">Exercise 18</div>
 						<p>A generator is a special type of function used to simplify the creation of iterators. A generator is declared with operator <b>function*</b>, which allow the use of the <code>yield</code> operator inside.</p>
 						<pre style="font-size: 60%"><code class="javascript hljs js" data-trim>
-							const compteur123 = {
+							const counter123 = {
 								[Symbol.iterator]: function*(){
-									let nombres = [1, 2, 3];
-									while(nombres.length) yield nombres.shift();
+									let numbers = [1, 2, 3];
+									while(numbers.length) yield numbers.shift();
 								}
 							}
 
-							[...compteur123]
+							[...counter123]
 							▸ [1, 2, 3]
 						</code></pre>
 						<p><code>yield</code> let you pause the execution of the generator function and returns an intermediate result. The execution will resume on <code>next()</code> call.</p>
