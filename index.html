@@ -169,11 +169,11 @@
 							let arr = [3,2,1]
 							arr.push(4,5) // returns new array.length (5), a = [3,2,1,4,5]
 							arr.pop() // returns last item (5), a = [3,2,1,4]
-							arr.unshift(6,5) // returns new array.length (6) ; a = [6,5,3,1,2,4]
-							arr.shift() // returns first item (6) ; a = [5,3,1,2,4]
-							arr.splice(1,2,7,8) // at index 1, remove 2 items, insert (7,8) ; [5,7,8,2,4]
-							arr.sort((a,b) => a-b) // [2,4,5,7,8]
-							arr.reverse() // [8,7,5,4,2]
+							arr.unshift(6,5) // returns new array.length (6) ; a = [6,5,3,2,1,4]
+							arr.shift() // returns first item (6) ; a = [5,3,2,1,4]
+							arr.splice(1,2,7,8) // at index 1, remove 2 items, insert (7,8) ; [5,7,8,1,4]
+							arr.sort((a,b) => a-b) // [1,4,5,7,8]
+							arr.reverse() // [8,7,5,4,1]
 						</code></pre>
 					</section>
 					<section>
@@ -1573,7 +1573,7 @@ console.log(5)
 							<code>Object.setPrototypeOf(obj, newProto)</code></li>
 						</ul>
 						<div class="note warning" style="display: block; margin-left: auto; margin-right: 0; width: 500px">
-							Do not reassign the prototype in performance-critical parts of your application because it is tricky to optimize for classical JavaScript engines
+							Do not reassign the prototype in performance-critical parts of your application because it is tricky to optimize for JavaScript engines
 						</div>
 					</section>
 
@@ -1645,7 +1645,7 @@ console.log(5)
 						<h3>Beware of misuse of language !</h3>
 						<div class="center" style="font-size: 200%; font-weight: bold">inheritance ≠ delegation</div>
 						<p class="left">An object does not inherit the properties of its prototype, but it <b>delegates</b> them to it: these are not its own properties</p>
-						<pre><code class="javascript hljs" data-trim>
+						<pre style="font-size: 80%"><code class="javascript hljs" data-trim>
 							const bob = Object.create({ name: "Anonymous" })
 							bob.name = "Bob";
 
@@ -1658,7 +1658,7 @@ console.log(5)
 						</code></pre>
 						<div class="left">
 						<p>In the context of OOP with prototypes, delegating can mean:</p>
-							<ul>
+							<ul class="narrow">
 								<li>retrieve default values</li>
 								<li>get a generic implementation of a method</li>
 								<li>implement basic behaviors (toString, cast to primitive, etc.)</li>
@@ -1722,7 +1722,7 @@ console.log(5)
 					<section>
 						<h3>Constructors and context</h3>
 						<p>The <code class="blue">new</code> operator changes the way a function is invoked in several ways:</p>
-						<pre><code class="javascript hljs" data-trim>
+						<pre style="font-size: 90%"><code class="javascript hljs" data-trim>
 							function hello(){
 								console.log(`this === ${this}`)
 							}
@@ -1737,9 +1737,11 @@ console.log(5)
 							<code>Constructor.call(Object.create(Constructor.prototype), ...args)</code>
 						</div>
 						<p>This object is also returned by default by the function, when there is no <code>return</code> instruction.</p>
-						<pre><code class="javascript hljs" data-trim>
-							console.log(typeof result1) // undefined
-							console.log(typeof result2) // object
+						<pre style="font-size: 90%"><code class="javascript hljs" data-trim>
+							typeof result1
+							▸ "undefined"
+							typeof result2
+							▸ "object"
 						</code></pre>
 					</section>
 
@@ -1769,7 +1771,11 @@ console.log(5)
 
 					<section>
 						<h3>Constructor.prototype</h3>
-						<div class="note warning" style="width: 500px">Not to be confused: <pre><code class="javascript hljs">Constructor.prototype</code>  ≠  <code class="javascript hljs">Object.getPrototypeOf(Constructor)</code></pre></div>
+						<div class="note warning" style="width: 500px">Not to be confused: 
+							<code class="javascript hljs">Constructor.prototype</code>
+							<p style="text-align: center; font-size: 200%; margin: 0">≠</p>
+							<code class="javascript hljs">Object.getPrototypeOf(Constructor)</code>
+						</div>
 						<pre class="fragment fade"><code class="javascript hljs js" data-trim>
 							function Car(){} ⇔ const Car = new Function()
 						</code></pre>
@@ -1782,8 +1788,7 @@ console.log(5)
 						<h3>Constructors flaws</h3>
 						<p>Constructors are a commonly used pattern in JS, but they have several flaws:</p>
 						<ul>
-							<li class="fragment">The prototype constructors are not automatically invoked, you have to do it manually.</li>
-							<li class="fragment">The prototype constructor may not have the same signature, which breaks the <a target="_blank" href="https://en.wikipedia.org/wiki/Liskov_substitution_principle">principle of substitution</a>.</li>
+							<li class="fragment">The prototype constructors are not automatically invoked, you have to do it manually.</li>							
 							<li class="fragment">A <code>constructor</code> property is assigned to created objects, which can break existing code if you use this property for other effects, for example: <code>car.constructor = "Toyota"</code></li>
 							<li class="fragment"><code>this</code> keyword does not work the same depending on whether the function is called with operator <code>new</code> or not</li>
 							<li class="fragment">It is not possible to declare several constructors</li>
@@ -1881,8 +1886,6 @@ C.methodStatic() // methodStatic in C
 							<li class="fragment">The prototype constructors are not automatically invoked, you have to do it manually.
 								<div><img alt="fixed" src="assets/img/patch.png" style="height: 28px;" /> still the case but simplified with <code>super()</code></div>
 							</li>
-							<li class="fragment">The prototype constructor may not have the same signature, which breaks the <a target="_blank" href="https://en.wikipedia.org/wiki/Liskov_substitution_principle">principle of substitution</a>.
-								<div><img alt="Not fixed" src="assets/img/smiley-sad.png" style="height: 28px;" /> still the case</div></li>
 							<li class="fragment">A <code>constructor</code> property is assigned to constructed objects, which can break existing code if you use this property for other effects, for example: <code>car.constructor = "Toyota"</code>
 								<div><img alt="fixed" src="assets/img/patch.png" style="height: 28px;" /> still the case but the assignation is explicit to prevent conflicts</div></li>
 							<li class="fragment"><code>this</code> keyword does not work the same depending on whether the function is called with operator <code>new</code> or not
