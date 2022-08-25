@@ -2275,7 +2275,7 @@ new Proxy(obj, {
 						<h3>Function patterns: Recursivity</h3>
 						<p>A <b>recursive</b> function invokes itself with other arguments until reaching a <b>stop condition</b>.</p>
 						<pre><code class="javascript hljs js" data-trim>
-							const factorial = n => n &gt; 2 ? 1 : n * factorial(n-1)
+							const factorial = n => n &lt; 2 ? 1 : n * factorial(n-1)
 
 							const flatten = ([x, ...xs]) => x === undefined 
 								? []
