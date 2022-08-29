@@ -101,7 +101,7 @@
     border-top-right-radius: 20% 30px;
     width: 100%;
     position: absolute;
-    right: 16px;
+    right: 15px;
     top: 0;
     box-sizing: border-box;
 }
@@ -114,7 +114,7 @@
     border-bottom-right-radius: 20% 30px;
     width: 100%;
     position: absolute;
-    right: 16px;
+    right: 15px;
     bottom: 0;    
     box-sizing: border-box;
 }
