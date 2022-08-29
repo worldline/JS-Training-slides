@@ -1880,17 +1880,40 @@ const keyboardSubscription = keyboardObservable.subscribe({
 					<section id="constructors-flaws-with-class">
 						<h3 data-i18n="title">Constructors flaws, with operator <code>class</code></h3>
 						<ul>
-							<li class="fragment">The prototype constructors are not automatically invoked, you have to do it manually.
-								<div><img alt="fixed" src="assets/img/patch.png" style="height: 28px;" /> still the case but simplified with <code>super()</code></div>
+							<li class="fragment">
+								<span data-i18n="list-1">The prototype constructors are not automatically invoked, you have to do it manually.</span>
+								<div>
+									<img alt="fixed" src="assets/img/patch.png" style="height: 28px;" /> 
+									<span data-i18n="text-1">still the case but simplified with <code>super()</code></span>
+								</div>
 							</li>
-							<li class="fragment">A <code>constructor</code> property is assigned to constructed objects, which can break existing code if you use this property for other effects, for example: <code>car.constructor = "Toyota"</code>
-								<div><img alt="fixed" src="assets/img/patch.png" style="height: 28px;" /> still the case but the assignation is explicit to prevent conflicts</div></li>
-							<li class="fragment"><code>this</code> keyword does not work the same depending on whether the function is called with operator <code>new</code> or not
-								<div><img alt="fixed" src="assets/img/patch.png" style="height: 28px;" /> an exception is raised if constructor is not called with <code>new</code></div></li>
-							<li class="fragment">It is not possible to declare several constructors
-								<div><img alt="Not fixed" src="assets/img/smiley-sad.png" style="height: 28px;" /> still the case</div></li>
-							<li class="fragment">They are confusing for beginners with prototypes
-								<div><img alt="Not fixed" src="assets/img/smiley-sad.png" style="height: 28px;" /> adds even more confusion with class-based OOP</div>
+							<li class="fragment">
+								<span data-i18n="list-2">A <code>constructor</code> property is assigned to constructed objects, which can break existing code if you use this property for other effects, for example: <code>car.constructor = "Toyota"</code></span>
+								<div>
+									<img alt="fixed" src="assets/img/patch.png" style="height: 28px;" /> 
+									<span data-i18n="text-2">still the case but the assignation is explicit to prevent conflicts</span>
+								</div>
+							</li>
+							<li class="fragment">
+								<span data-i18n="list-3"><code>this</code> keyword does not work the same depending on whether the function is called with operator <code>new</code> or not</span>
+								<div>
+									<img alt="fixed" src="assets/img/patch.png" style="height: 28px;" /> 
+									<span data-i18n="text-3">an exception is raised if constructor is not called with <code>new</code></span>
+								</div>
+							</li>
+							<li class="fragment">
+								<span data-i18n="list-4">It is not possible to declare several constructors</span>
+								<div>
+									<img alt="Not fixed" src="assets/img/smiley-sad.png" style="height: 28px;" /> 
+									<span data-i18n="text-4">still the case</span>
+								</div>
+							</li>
+							<li class="fragment">
+								<span data-i18n="list-5">They are confusing for beginners with prototypes</span>
+								<div>
+									<img alt="Not fixed" src="assets/img/smiley-sad.png" style="height: 28px;" />
+									<span data-i18n="text-5">adds even more confusion with class-based OOP</span>
+								</div>
 							</li>
 						</ul>
 					</section>
