@@ -962,7 +962,7 @@
 							const { foo: { bar: magicNumber } } == myObject
 							// magicNumber = 42
 
-							const [first, second, fourth] = [1,2,3,4];
+							const [first, second, , fourth] = [1,2,3,4];
 							// first = 1, second = 2, fourth = 4
 						</code></pre>
 					</section>
@@ -993,7 +993,7 @@
 								
 							}
 
-							const required = name => throw new Error(`Missing required paramter ${name}`)
+							const required = name => throw new Error(`Missing required parameter ${name}`)
 
 							const findUsersByRole = ({
 								role = required('role'),
@@ -1052,7 +1052,8 @@
 								console.log({ strings, vars });
 
 								return strings.reduce(
-									(out, str, i) => `${out}${str}${vars[i-1] || "").toUpperCase()}`
+									(out, str, i) => `${out}${str}${vars[i] || "").toUpperCase()}`,
+									""
 								)
 							}
 						</code></pre>
