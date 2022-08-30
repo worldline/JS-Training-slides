@@ -327,10 +327,25 @@
 						<h3>Types and Primitives</h3>
 						<span class="ref">Exercise 1</span>
 						<p>JavaScript defines 7 data types:</p>
-						<img height="250px" src="./assets/img/Image5.png">
-						<p>The <b class="monospace">typeof</b> operator returns the type of an object, but be careful:</p>
+						<ul class="narrow has-brace-right">
+							<li><code>null</code></li>
+							<li><code>undefined</code></li>
+							<li><code>boolean</code></li>
+							<li><code>number</code></li>
+							<li><code>string</code></li>
+							<li><code>symbol</code> (new in ES6)</li>
+							<li><code>object</code></li>
+							<span class="brace" style="height: 84%;	top: 42%;"></span>
+							<span class="brace-description" style="top: 42%">Primitives</span>
+						</ul>
+						<p>The <b class="monospace">typeof</b> operator returns the type of an object:</p>
 						<pre><code class="javascript hljs" data-trim>
-							typeof null === "object" // bug of the 1st version of ES
+							typeof true === "boolean"
+							typeof 12 === "number"
+						</code></pre>
+						<p>but be careful of these exceptions:</p>
+						<pre><code class="javascript hljs" data-trim>
+							typeof null === "object" // bug in the 1st version of ES
 							typeof function(){} === "function"
 						</code></pre>
 					</section>
@@ -765,7 +780,8 @@
 					</section>
 					<section>
 						<h3>Logical operators</h3>
-						<p>Operands are converted to Booleans to evaluate the operator, but the original values are returned</p>
+						<p>Operands are casted to booleans to evaluate the operator,<br>
+							 but it is the original values that are returned.</p>
 						<pre><code class="javascript hljs" data-trim>
 							let a = 42,
 							b = "abc",
@@ -782,8 +798,8 @@
 							a && b ⇔ a ? b : a
 						</aside>
 						<p>
-							If the implicit Boolean cast of a value is <span class="monospace">true</span>, 
-							the value is said to be <em>truthy</em>, otherwise <em>falsey</em>
+							If a value is implicitely casted as Boolean as <code>true</code>, 
+							it is said to be <em>truthy</em>, otherwise <em>falsey</em>
 						</p>
 					</section>
 					<section>
@@ -1483,9 +1499,17 @@ const keyboardSubscription = keyboardObservable.subscribe({
 					</section>
 
 					<section class="left">
-						<h3>Tasks, microtasks and event loop</h3>
+						<h3>The event loop</h3>						
 						<p>The <b>event loop</b> is the mechanism that periodically pops the asynchronous calls.</p>
+						<div class="center">
+							<img src="assets/img/event-loop-intro.png" alt="" style="height: 150px; margin: 0 auto" />
+						</div>
 						<p>Between each iteration of the loop, the browser re-renders the page and processes user events (click, scroll, etc.)</p>
+						<p>At the end of each loop, it triggers the asynchronous calls that have been stacked: event listeners, timeouts, resolved promises...</p>
+					</section>
+
+					<section>
+						<h3>Tasks, microtasks and event loop</h3>
 						<p>Modern JS engines store asynchronous calls in two stacks:<ul>
 							<li><b>tasks</b>, unstacked at the end of each event loop (examples: <code>setTimeout</code>, <code>setInterval</code>, <code>fetch</code>)</li>
 							<li><b>microtasks</b>, unstacked at the end of each task (examples: <code>promise.then</code>, <code>process.nextTick</code>)</li>
@@ -1494,17 +1518,17 @@ const keyboardSubscription = keyboardObservable.subscribe({
 					</section>
 
 					<section class="left">
-						<h3>Work with the event loop</h3>
-						<p>Sometimes, you need to wait for the event loop:
+						<h3>Working with the event loop</h3>
+						<p>Sometimes, the developer wants to deliberately wait for the next event loop:
 						<ul>
 							<li>to wait for the DOM to be updated before the next instruction</li>
 							<li>to not block the thread when doing a heavy calculation</li>
 						</ul>
 						</p>
-						<p>You then need to create a new task for your callback:
+						<p>You can use these methods to create new macrotasks run at the next event loops:
 							<ul>
-								<li><code>setTimeout(callback, delai)</code>
-									with zero delay to minimize waiting time
+								<li><code>setTimeout(callback, 0)</code>
+									with delay set to zero to minimize waiting time
 								</li>
 								<li>
 									<code>requestAnimationFrame(callback)</code>
@@ -1519,7 +1543,7 @@ const keyboardSubscription = keyboardObservable.subscribe({
 					</section>
 
 					<section>
-						<h3>Work with the event loop</h3>
+						<h3>Working with the event loop</h3>
 						<span class="ref">Quiz</span>
 						<pre><code class="javascript hljs" data-trim>
 setTimeout(() => console.log(1), 0)
