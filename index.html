@@ -880,9 +880,9 @@
 						</code></pre>
 						<p>Functions declared with this shortened syntax have specific features:</p>
 						<ul>
-							<li>No execution context <br>
+							<li>Has no execution context <br>
 							<span class="grey">(the value of <span class="monospace">this</span> is looked up in the parent scope)</span></li>
-							<li>Cannot be invoked as builders</li>
+							<li>Cannot be called as a constructor</li>
 						</ul>
 						<p>Short and effective, they encourage a functional, no-frills style <em>(no closure)</em>.</p>
 						<div class="note info">Arrow functions are recommended for all non-method functions</div>
@@ -897,12 +897,12 @@
 
 							f(1, 2, 3)
 							▸ 6
-							f(1, null, null)
-							▸ 1
-							f(1, undefined, undefined)
-							▸ 4
 							f(1)
 							▸ 4
+							f(1, undefined, undefined)
+							▸ 4
+							f(1, null, null)
+							▸ 1
 						</code></pre>
 						<p>Also works with the arrow functions:</p>
 						<pre><code class="javascript hljs" data-trim>const doSomething = (params = {}) => {}</code></pre>
@@ -998,8 +998,8 @@
 							})
 						</code></pre>
 					</section>
-					<section>
-						<h3>Default parameters</h3>
+					<section class="left">
+						<h3>Use cases of default parameters values</h3>
 						<ul>
 							<li>Can be expressions using other arguments or variables in the scope.</li>
 							<li>If the default value is an expression, it will only be executed if necessary</li>
