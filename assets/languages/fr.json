@@ -14,39 +14,38 @@
        "list-1": "ECMAScript, TC39 et les versions de JavaScript",
        "chapter-2": "Une réintroduction à JavaScript",
        "list-2": "Primitives et Objets",
-       "list-4": "Descripteurs de propriétés",
-       "list-5": "Scopes et Closures",
-       "list-6": "Fonctions et contextes",
-       "list-7": "Cast implicites",
+       "list-3": "Descripteurs de propriétés",
+       "list-4": "Scopes et Closures",
+       "list-5": "Fonctions et contextes",
+       "list-6": "Cast implicites",
        "chapter-3": "Mise à niveau ES2015",
-       "list-8": "Arrow functions",
-       "list-9": "Paramètres par défaut",
-       "list-10": "Spread / Rest",
-       "list-11": "Destructuring",
-       "list-12": "Template literals",
-       "list-13": "Map et Sets",
-       "list-14": "Modules",
+       "list-7": "Arrow functions",
+       "list-8": "Paramètres par défaut",
+       "list-9": "Spread / Rest",
+       "list-10": "Destructuring",
+       "list-11": "Template literals",
+       "list-12": "Map et Sets",
+       "list-13": "Modules",
        "chapter-4": "Gérer l'asynchronisme",
-       "list-15": "Asynchrone, c'est quoi",
-       "list-16": "Modules",
-       "list-17": "Callbacks et modèle Publisher/Subscriber",
-       "list-18": "Promises",
-       "list-19": "async / await",
-       "list-20": "Observables",
+       "list-14": "Asynchrone, c'est quoi",
+       "list-15": "Callbacks et Pub/Sub",
+       "list-16": "Promises",
+       "list-17": "async / await",
+       "list-18": "Observables",
        "chapter-5": "Orienté Objet",
-       "list-21": "Prototypes et délégation",
-       "list-22": "class / super / extends",
-       "list-23": "Composition d'objets",
-       "list-24": "Symboles, itérables et générateurs",
-       "list-25": "Proxies",
+       "list-19": "Prototypes et délégation",
+       "list-20": "class / super / extends",
+       "list-21": "Composition d'objets",
+       "list-22": "Symboles, itérables et générateurs",
+       "list-23": "Proxies",
        "chapter-6": "Orienté Fonctionnel",
-       "list-26": "Récursivité",
-       "list-27": "API chaînables",
-       "list-28": "Composition de fonctions",
-       "list-29": "Curryfication",
+       "list-24": "Récursivité",
+       "list-25": "API chaînables",
+       "list-26": "Composition de fonctions",
+       "list-27": "Curryfication",
        "chapter-7": "Transpileurs",
-       "list-30": "Babel",
-       "list-31": "TypeScript, JSX"
+       "list-28": "Babel",
+       "list-29": "TypeScript, JSX"
      },
      "cheat-sheets": {
        "title": "Cheat Sheets",
@@ -99,7 +98,7 @@
        "text-1": "Slides et exercices disponibles sur ce repo Github: <br> <a href=\"https://github.com/worldline/JS-Training\" target=\"-blank\">https://github.com/worldline/JS-Training</a>",
        "text-2": "Faites les exercices depuis votre navigateur à cette adresse: <a href=\"https://codesandbox.io/s/github/SDCOAdvocates/JS-Training\" target=\"-blank\">https://codesandbox.io/s/github/SDCOAdvocates/JS-Training</a>",
        "text-3": "Forkez pour créer votre version personnelle du repo de travail. Vous pouvez la publier sur votre compte personnel Github si vous en avez un.",
-       "text-4": "Pour chaque exercice, corrigez la source pour valider le test associ"
+       "text-4": "Pour chaque exercice, corrigez la source pour valider le test associé."
      },
      "types-primitives": {
        "title": "Types et primitives",
@@ -116,7 +115,7 @@
      },
      "objects": {
        "title": "Objets",
-       "text": "Les fonctions, arrays et dérivés sont tous de type <b class=\"monospace\">object</b>. <br>Contrairement aux primitives, les objets:",
+       "text": "Les fonctions, arrays et autres objets sont tous de type <b class=\"monospace\">object</b>. <br>Contrairement aux primitives, les objets:",
        "list-1": "sont comparés par référence",
        "list-2": "ont une liste de propriétés qui sont des paires clé-valeur: clé (String, Symbol) ⇔ valeur (any)"
      },
@@ -127,7 +126,7 @@
      "properties-assignment": {
        "title": "Objets: parcours des propriétés",
        "exo": "Exercice 3",
-       "note": "<b class=\"monospace\">Object.assign</b> est très utile pour l'assignation de valeurs par défaut ou l'assignation d'un ensemble de propriétés en une seule instruction"
+       "note": "<b class=\"monospace\">Object.assign</b> est très utile pour assigner un ensemble de propriétés en une seule instruction"
      },
      "property-descriptors": {
        "title": "Descripteurs de propriétés",
@@ -138,7 +137,7 @@
        "list-4": "si le descripteur peut être modifié",
        "list-5": "fonction optionnelle à utiliser comme accesseur (getter)",
        "list-6": "fonction optionnelle à utiliser comme mutateur (setter)",
-       "text-2": "Une assignation par défaut est énumérable, modifiable et configurable, sans accesseur ou mutateur spécifique."
+       "text-2": "Par défaut, une assignation est énumérable, modifiable et configurable, sans accesseur ou mutateur spécifique."
      },
      "define-the-descriptors": {
        "title": "Définir les descripteurs",
@@ -196,8 +195,8 @@
      },
      "functions-execution-context": {
        "title": "Fonctions et contexte d'exécution",
-       "text-1": "Les fonctions ont une sorte d'argument caché appelé c<b>ontexte</b> et assigné au mot-clé <b class=\"monospace\">this</b> dans le corps de la fonction.",
-       "text-2": "Lorsqu'une fonction est appelée en tant que propriété d'un objet, nous l'appelons : une <b>méthode</b>, et cet objet parent est affecté en tant que contexte d'exécution de la méthode :",
+       "text-1": "Les fonctions ont une sorte d'argument caché appelé <b>contexte</b> et assigné au mot-clé <b class=\"monospace\">this</b> dans le corps de la fonction.",
+       "text-2": "Lorsqu'une fonction est appelée en tant que propriété d'un objet, on dit qu'on l'appelle en tant que <b>méthode</b>, et cet objet parent est affecté en tant que contexte d'exécution de la méthode :",
        "text-3": "Lorsqu'une fonction est appelée par référence directe, elle n'a pas de contexte, ce qui signifie que la variable <b class=\"monospace\">this</b> sera recherchée dans la portée parent.",
        "text-4": "Dans le <b>scope global</b> ou au niveau de la racine, le contexte est défini comme le <b>contexte global</b> (<code>Window</code> sur navigateur)"
      },
@@ -228,7 +227,7 @@
      "logical-operators": {
        "title": "Opérateurs logiques",
        "text-1": "Les opérandes sont converties en booléens pour évaluer l'opérateur, mais les valeurs originales sont retournées",
-       "text-2": "Si la cast implicite en booléen d'une valeur est <code>true</code>, on dit que la valeur est <em class=\"monospace\">truthy</em>, sinon <em class=\"monospace\">falsey</em>"
+       "text-2": "Si la cast implicite en booléen d'une valeur est <code>true</code>,<br>on dit que la valeur est <em class=\"monospace\">truthy</em>, sinon <em class=\"monospace\">falsey</em>"
      },
      "logical-operators-2": {
        "title": "Opérateurs logiques",

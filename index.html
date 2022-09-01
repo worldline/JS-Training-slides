@@ -485,7 +485,7 @@
 							}
 						</code></pre>
 					</section>
-					<section id="delegated-properties">
+					<!--<section id="delegated-properties">
 						<h3 data-i18n="title">Own and delegated properties</h3>
 						<p data-i18n="text-1">
 							The properties assigned to an object are called the <b>own properties</b> of the object. 
@@ -497,7 +497,7 @@
 							obj.toString === Object.prototype.toString
 							▸ true
 						</code></pre>
-					</section>
+					</section>-->
 					<section id="scopes">
 						<h3 data-i18n="title">Scopes</h3>
 						<p data-i18n="text-1"><b>Scope</b> = perimeter from which variables can be accessed.</p>
@@ -566,7 +566,7 @@
 									}
 								}
 
-								var add5 = add(5);
+								const add5 = add(5);
 								add5(8)
 								▸ 13
 							</code></pre>
@@ -640,22 +640,22 @@
 							<span class="monospace">apply</span> and <span class="monospace">bind</span>
 						</p>
 						<pre style="font-size: 80%"><code class="javascript hljs" data-trim>
-							function greet(a, b) {
-								return `Hi I'm ${this.name} ! ${a} + ${b} equals ${a+b} !`
+							function calculateScore(score1, score2) {
+								return this.name + " score is " + (score1 + score2)
 							}
 
 							let alice = { name: "Alice" },
-									bob = { name: "Bob" };
+								bob = { name: "Bob" };
 
-							greet.call(alice, 1, 2)
-							▸ "Hi I'm Alice ! 1 + 2 equals 3 !"
+							calculateScore.call(alice, 7, 5)
+							▸ "Alice score is 12"
 
-							greet.apply(bob, [2, 3])
-							▸ "Hi I'm Bob ! 2 + 3 equals 5 !"
+							calculateScore.apply(bob, [4, 6])
+							▸ "Bob score is 10"
 
-							let greetBob = greet.bind(bob, 1, 5)
-							greetBob()
-							▸ "Hi I'm Bob ! 1 + 5 equals 6 !"
+							let getBobScore = calculateScore.bind(bob, 3, 5)
+							getBobScore()
+							▸ "Bob score is 8"
 						</code></pre>
 						<p data-i18n="text-2">These methods are available on all functions.</p>
 					</section>
@@ -669,7 +669,7 @@
 						<p data-i18n="text-2">The switch between object and primitive is automatic:</p>
 						<div class="flex-center">
 							<div style="flex-basis: 100%;">
-								<p class="center">Primitive -> Object</p>
+								<p class="center">Primitive → Object</p>
 								<pre style="font-size: 80%"><code class="javascript hljs" data-trim>
 									let str = "abc";
 
@@ -678,7 +678,7 @@
 								</code></pre>
 							</div>
 							<div style="flex-basis: 100%;">
-								<p class="center">Object -> Primitive</p>
+								<p class="center">Object → Primitive</p>
 								<pre style="font-size: 65%"><code class="javascript hljs" data-trim>
 									let Str = new String( "abc" ),
 											str = Str.valueOf() // ou "" + Str
@@ -710,7 +710,7 @@
 										12 + "34"
 										▸ "1234"
 									</code></pre></td>
-									<td><pre><code data-trim>'' +</code></pre></td>
+									<td><pre><code> + </code></pre></td>
 								</tr>
 								<tr>
 									<td>ToNumber</td>
