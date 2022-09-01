@@ -255,7 +255,7 @@
        "text-2": "Courtes et efficaces, elles encouragent un style fonctionnel et sans effets de bord <em>(sans closure)</em>.",
        "note": "Recommandé pour toutes les fonctions hors méthodes"
      },
-     "default-paramters": {
+     "default-parameters": {
        "title": "Paramètres par défaut",
        "text-1": "Assigne une valeur par défaut si l'argument <code>=== undefined</code>",
        "text-2": "Fonctionne aussi avec les arrow functions :"
@@ -282,8 +282,8 @@
        "exo": "Exercice 9",
        "text": "Fonctionne aussi avec les paramètres de fonctions:"
      },
-     "default-paramters-2": {
-       "title": "Paramètres par défaut",
+     "default-parameters-2": {
+       "title": "Cas d'utilisation des valeurs de paramètres par défaut",
        "list-1": "Peuvent être des expressions utilisant d'autres arguments ou variables du scope.",
        "list-2": "Si la valeur par défaut est une expression, elle ne sera exécutée que si nécessaire"
      },

@@ -893,7 +893,7 @@
 						<p data-i18n="text-2">Short and effective, they encourage a functional, no-frills style <em>(no closure)</em>.</p>
 						<div class="note info" data-i18n="note">Arrow functions are recommended for all non-method functions</div>
 					</section>
-					<section id="default-paramters">
+					<section id="default-parameters">
 						<h3 data-i18n="title">Default parameters</h3>
 						<p data-i18n="text-1">Assigns a default value if argument <span class="monospace">=== undefined</span></p>
 						<pre><code class="javascript hljs" data-trim>
@@ -1002,7 +1002,7 @@
 							})
 						</code></pre>
 					</section>
-					<section class="left" id="default-paramters-2">
+					<section class="left" id="default-parameters-2">
 						<h3 data-i18n="title">Use cases of default parameters values</h3>
 						<ul>
 							<li data-i18n="list-1">Can be expressions using other arguments or variables in the scope.</li>
@@ -1478,26 +1478,26 @@
 						<h3 data-i18n="title">Observable: example of API (from <a href="https://rxjs.dev/guide/observable" target="_blank">RxJS</a>)</h3>
 						<span class="ref" data-i18n="exo">Exercise 14</span>
 						<pre style="font-size: 65%"><code class="javascript hljs" data-trim>
-const keyboardObservable = new Observable( subscriber => {
-	const onKey = event => {
-		if(event.key === "Enter") {
-			subscriber.complete();
-			document.removeEventListener("keyup", onKey)
-		}
-		else subscriber.next(event.key)
-	}
+							const keyboardObservable = new Observable( subscriber => {
+								const onKey = event => {
+									if(event.key === "Enter") {
+										subscriber.complete();
+										document.removeEventListener("keyup", onKey)
+									}
+									else subscriber.next(event.key)
+								}
 
-	document.addEventListener("keyup", onKey)
-});
+								document.addEventListener("keyup", onKey)
+							});
 
-const keys = [];
-const keyboardSubscription = keyboardObservable.subscribe({
-	next(key){
-		if (key === "Escape") keyboardSubscription.unsubscribe();
-		else keys.push(key)
-	},
-	complete(){ alert(keys.join("")) }
-});
+							const keys = [];
+							const keyboardSubscription = keyboardObservable.subscribe({
+								next(key){
+									if (key === "Escape") keyboardSubscription.unsubscribe();
+									else keys.push(key)
+								},
+								complete(){ alert(keys.join("")) }
+							});
 						</code></pre>
 					</section>
 
@@ -1512,9 +1512,9 @@ const keyboardSubscription = keyboardObservable.subscribe({
 						<img src="assets/img/event-loop.jpg" alt="Schema of the event loop" />
 					</section>
 
-					<section class="left">
-						<h3>Work with the event loop</h3>
-						<p>Sometimes, you need to wait for the event loop:
+					<section class="left" id="work-with-the-event-loop">
+						<h3 data-i18n="title">Work with the event loop</h3>
+						<p data-i18n="tex-1">Sometimes, you need to wait for the event loop:
 						<ul>
 							<li data-i18n="list-1">to wait for the DOM to be updated before the next instruction</li>
 							<li data-i18n="list-2">to not block the thread when doing a heavy calculation</li>
