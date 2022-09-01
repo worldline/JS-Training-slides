@@ -104,7 +104,8 @@
        "title": "Types et primitives",
        "exo": "Exercice 1",
        "text-1": "JavaScript définit 7 types de données:",
-       "text-2": "L'opérateur <b class=\"monospace\">typeof</b> retourne le type d'un objet, mais attention:"
+       "text-2": "L'opérateur <b class=\"monospace\">typeof</b> retourne le type d'un objet:",
+       "text-3": "mais attention à ces exceptions:"
      },
      "null-or-undefined": {
        "title": "null ou undefined",
