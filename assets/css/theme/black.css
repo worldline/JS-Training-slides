@@ -93,6 +93,10 @@ section.has-light-background, section.has-light-background h1, section.has-light
   font-size: var(--r-main-font-size);
 }
 
+.reveal .note p {
+  font-size: inherit;
+}
+
 /* Remove trailing margins after titles */
 .reveal h1:last-child,
 .reveal h2:last-child,
