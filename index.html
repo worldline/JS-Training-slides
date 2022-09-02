@@ -201,7 +201,7 @@
 							let fusionMap = new Map([...map1, ...map2])
 							
 							for(let [key, val] of map){ }
-							map.forEach((val, key, map) => {})
+							map.forEach((val, key, map) => { })
 						</code></pre>
 					</section>
 					<section>
@@ -216,8 +216,8 @@
 							map.size === 4;
 							map.clear(); // remove all
 							 
-							for(let item of mySet){}
-							mySet.forEach(item => {})
+							for(let item of mySet){ }
+							mySet.forEach(item => { })
 							let items = [...mySet];
 						</code></pre>
 					</section>
@@ -373,7 +373,8 @@
 					</section>
 					<section id="objects" style="text-align: left;">
 						<h3 data-i18n="title">Objects</h3>
-						<p data-i18n="text">Functions, <b class="monospace">arrays</b> and other structures are all of type <b class="monospace">object</b>. Unlike primitives, objects:</p>
+						<p data-i18n="text">Functions, arrays and other data structures are all of type <b class="monospace">object</b>.</p>
+						<p>Unlike primitives, objects:</p>
 						<ul>
 							<li data-i18n="list-1">are compared by reference</li>
 						</ul>
@@ -439,18 +440,18 @@
 						<p data-i18n="text-1">Each property contains in addition to its value, a list of intrinsic parameters called <b>descriptors</b>:</p>
 						<ul>
 							<li><b class="monospace">value:</b> <em data-i18n="list-1">the value of the property</em></li>
-							<li><b class="monospace">enumerable: true</b> <em data-i18n="list-2">if the property is returned by Object.keys or for..in</em></li>
+							<li><b class="monospace">enumerable: true</b> <em data-i18n="list-2">if the property is listed with Object.keys or for..in</em></li>
 							<li><b class="monospace">writable: true</b> <em data-i18n="list-3">if the value of the property can be modified</em></li>
 							<li><b class="monospace">configurable: true</b>: <em data-i18n="list-4">if the descriptor can be modified</em></li>
 							<li><b class="monospace">get</b>: <em data-i18n="list-5">optional function to use as getter</em></li>
-							<li><b class="monospace">set</b>: <em data-i18n="list-6">optional function to use as mutator (setter)</em></li>
+							<li><b class="monospace">set</b>: <em data-i18n="list-6">optional function to use as setter</em></li>
 						</ul>
 						<p data-i18n="text-2">A default assignment is enumerable, modifiable and configurable, without specific accessors or mutators.</p>
 					</section>
 					<section id="define-the-descriptors">
 						<h3 data-i18n="title">Define the descriptors</h3>
 						<span class="ref" data-i18n="exo">Exercise 4</span>
-						<p data-i18n="text">The method <b class="monospace">Object.defineProperty()</b> allows you to assign a property by specifying its descriptors</p>
+						<p data-i18n="text"><b class="monospace">Object.defineProperty()</b> allows you to assign a property by specifying its descriptors</p>
 						<div class="flex-center">
 							<pre style="font-size: 80%"><code class="javascript hljs" data-trim>
 								const obj = {}
@@ -848,6 +849,7 @@
 						<h1 data-i18n="title">Upgrade to modern JS: ES2015+</h1>
 						<p data-i18n="description">Exercises 7 to 11</p>
 					</section>
+
 					<section id="syntactic-key-value">
 						<h3 data-i18n="title">Syntactic sugar: key and value</h3>
 						<pre><code class="javascript hljs" data-trim>
@@ -859,6 +861,7 @@
 							▸ {foo: "foo", bar: "bar"}
 						</code></pre>
 					</section>
+
 					<section id="syntactic-calculated-keys">
 						<h3 data-i18n="title">Syntactic sugar: calculated keys</h3>
 						<pre><code class="javascript hljs" data-trim>
@@ -881,6 +884,7 @@
 									foobar: "foobar"
 						</code></pre>
 					</section>
+
 					<section class="left" id="arrow-functions">
 						<h3 data-i18n="title">Arrow functions</h3>
 						<span class="ref" data-i18n="exo">Exercise 7</span>
@@ -893,11 +897,12 @@
 						<ul>
 							<li data-i18n="list-1">Has no execution context <br>
 							<span class="grey">(the value of <span class="monospace">this</span> is looked up in the parent scope)</span></li>
-							<li data-i18n="list-2">Cannot be called as a constructor</li>
+							<li data-i18n="list-2">Cannot be called as a constructor (with operator <code style="color: orange">new</code>)</li>
 						</ul>
 						<p data-i18n="text-2">Short and effective, they encourage a functional, no-frills style <em>(no closure)</em>.</p>
 						<div class="note info" data-i18n="note">Arrow functions are recommended for all non-method functions</div>
 					</section>
+
 					<section id="default-parameters">
 						<h3 data-i18n="title">Default parameters</h3>
 						<p data-i18n="text-1">Assigns a default value if argument is <span class="monospace">undefined</span></p>
@@ -916,6 +921,24 @@
 						<p data-i18n="text-2">Also works with the arrow functions:</p>
 						<pre><code class="javascript hljs" data-trim>const doSomething = (params = {}) => {}</code></pre>
 					</section>
+
+					<section class="left" id="default-parameters-2">
+						<h3 data-i18n="title">Use cases of default parameters values</h3>
+						<ul>
+							<li data-i18n="list-1">Can be expressions using other arguments or variables in the scope.</li>
+							<li data-i18n="list-2">If the default value is an expression, it will only be executed if necessary</li>
+						</ul>
+						<pre style="font-size: 80%"><code class="javascript hljs" data-trim>
+							function doSomething(data, config = retrieveDefaultConfig(data)) {
+								// retrieveDefaultConfig will be called only if config is undefined
+							}
+
+							const required = name => throw new Error("Missing required parameter: "+ name)
+
+							const findUsersByRole = (role = required('role')) => { }
+						</code></pre>
+					</section>
+
 					<section id="spread-rest">
 						<h3 data-i18n="title">Operators Spread / Rest</h3>
 						<p data-i18n="text">Spread: converts an iterable object into an argument list</p>
@@ -929,11 +952,12 @@
 							▸ 6
 
 							[1, ...[2,3], 4]
-							▸ (4) [1,2,3,4]
+							▸ [1,2,3,4]
 						</code></pre>
 
 						<pre><code class="javascript hljs" data-trim>const cloneArray = arr => [...arr]</code></pre>
 					</section>
+
 					<section id="spread-rest-2">
 						<h3 data-i18n="title">Operators Spread / Rest</h3>
 						<p data-i18n="text">Rest : converts a list of arguments into an Array</p>
@@ -948,6 +972,7 @@
 							}
 						</code></pre>
 					</section>
+
 					<section class="left" id="spread-rest-3">
 						<h3 data-i18n="title">Operators Spread / Rest</h3>
 						<span class="ref" data-i18n="exo">Exercise 8</span>
@@ -970,6 +995,7 @@
 							n; // { x: 1, y: 2, a: 3, b: 4} 
 						</code></pre>
 					</section>
+
 					<section id="destructuring">
 						<h3 data-i18n="title">Destructuring</h3>
 						<p data-i18n="text">Assigns variables according to an object / Array structure</p>
@@ -991,6 +1017,7 @@
 							// first = 1, second = 2, fourth = 4
 						</code></pre>
 					</section>
+
 					<section class="left" id="destructuring-2">
 						<h3 data-i18n="title">Destructuring</h3>
 						<span class="ref" data-i18n="exo">Exercise 9</span>
@@ -1007,25 +1034,7 @@
 							})
 						</code></pre>
 					</section>
-					<section class="left" id="default-parameters-2">
-						<h3 data-i18n="title">Use cases of default parameters values</h3>
-						<ul>
-							<li data-i18n="list-1">Can be expressions using other arguments or variables in the scope.</li>
-							<li data-i18n="list-2">If the default value is an expression, it will only be executed if necessary</li>
-						</ul>
-						<pre style="font-size: 80%"><code class="javascript hljs" data-trim>
-							function doSomething(data, config = retrieveDefaultConfig(data)) {
-								
-							}
-
-							const required = name => throw new Error(`Missing required parameter ${name}`)
-
-							const findUsersByRole = ({
-								role = required('role'),
-								maxResults = 100
-							}) => { }
-						</code></pre>
-					</section>
+					
 					<section class="left" id="object-argument-pattern">
 						<h3 data-i18n="title">Parameterized object argument pattern</h3>
 						<p data-i18n="text-1">Instead of passing several arguments to functions, a popular pattern is to pass an object as single argument with the different parameters as properties:</p>
@@ -1050,6 +1059,7 @@
 							<li data-i18n="list-4">allows you to return several variables</li>
 						</ul>
 					</section>
+
 					<section id="template-strings">
 						<h3 data-i18n="title">Template strings</h3>
 						<p data-i18n="text-1">Template Strings are a new literal String declaration introduced in ES2015.</p>
@@ -1068,6 +1078,7 @@
 						</div>
 						<div class="note info" data-i18n="note"><span style="text-decoration: underline; font-weight: bold">Recommended</span>: use template strings for all non-trivial strings</div>
 					</section>
+
 					<section id="tagged-template-strings">
 						<h3 data-i18n="title">Tagged Template strings</h3>
 						<span class="ref" data-i18n="exo">Exercise 10</span>
@@ -1085,12 +1096,13 @@
 						<img height="200" src="./assets/img/Image16.png">
 						<img height="200" src="./assets/img/Image17.png">
 					</section>
+
 					<section class="left" id="map-set">
 						<h3 data-i18n="title">Map & Set</h3>
 						<span class="ref" data-i18n="exo">Exercise 11</span>
 						<ul>
-							<li data-i18n="list-1"><code>Map</code>: collection of keys/values like objects, but the keys can be of any type</li>
-							<li data-i18n="list-2"><code>Set</code>: collection of values without keys, not ordered but with guarantee of uniqueness</li>
+							<li data-i18n="list-1"><code>Map</code>: collection of keys/values like objects, but the <b>keys can be of any type</b></li>
+							<li data-i18n="list-2"><code>Set</code>: collection of values without keys, not ordered but with <b>guarantee of uniqueness</b></li>
 						</ul>
 						<div class="cols-2">
 							<pre style="font-size: 80%"><code class="javascript hljs" data-trim>
@@ -1106,24 +1118,24 @@
 							</code></pre>
 							<pre style="font-size: 70%"><code class="javascript hljs" data-trim>
 								m = new Map([
-									["key", "value"], [ s, s.size ]
+									["key", "value"], [ 1, 2 ]
 								])
-								▸ Map(2) { "key" => "value", Set(4) => 4}
+								▸ Map(2) { "key" => "value", 1 => 2 }
 								
-								m.get(s)
-								▸ 4
+								m.get(1)
+								▸ 2
 								
 								m.set([1,2,3], [4,5,6])
 								m.delete("key")
 								
-								▸ Map(2) {Set(4) => 4, Array(3) => Array(3)}
+								▸ Map(2) {1 => 2, Array(3) => Array(3)}
 							</code></pre>
 						</div>
 					</section>
 					<section class="left" id="modules">
 						<h3 data-i18n="title">Modules (a.k.a. ES Modules or ESM in short)</h3>
-						<p data-i18n="text-1">The long awaited standard solution for managing modular code (divided into several separate files)</p>
-						<p><b><u data-i18n="text-2">Replaces and supersedes:</u></b></p>
+						<p data-i18n="text-1">The long awaited standard solution for managing modular JS codebases</p>
+						<p><b><u data-i18n="text-2">ESM replaces and superseeds all these old solutions:</u></b></p>
 						<ul>
 							<li>
 								<span data-i18n="list-1">CommonJS (used by Node.js)</span>
@@ -1140,22 +1152,27 @@
 						
 							<li data-i18n="list-3">
 								Universal Module Definition (UMD)<br>
-								<em>Pattern combining CommonJS, AMD and using global variables to be sure to be understood by all module systems</em>
+								<em>a pattern combining CommonJS, AMD and global variables to adapt to all environments</em>
 							</li>
-							<li data-i18n="list-4">the use of global variables and the <code>&lt;script></code> to be ordered</li>
+							<li data-i18n="list-4">the use of global variables and multiple ordered <code>&lt;script></code> tags</li>
 						</ul>
 					</section>
 					<section id="modules-2">
-						<h3 data-i18n="title">Modules</h3>
+						<h3 data-i18n="title">Modules: import and export</h3>
 						<div class="flex-center">
 							<div>
 								<p data-i18n="text-1">Two keywords: <code>import</code> and <code>export</code></p>
-								<p data-i18n="text-2">A distinction is made between named imports and default imports</p>
+								<p data-i18n="text-2">A distinction is made between <b>named</b> exports and <b>default</b> exports</p>
 								<pre><code class="javascript hljs" data-trim>
-									import MonModule from './mon-module.js'
-									import { a, b as two } from 'module'
-									import React, { Component } from 'react'
+									// default import
+									import MonModule from './mon-module.js' 
 
+									// named imports
+									import { a, b as two } from 'module' 
+
+									import React, { Component } from 'react'
+								</code></pre>
+								<pre><code class="javascript hljs" data-trim>
 									export const a = 42
 									export function b(){ ... }
 									export default { Component, View }
@@ -1165,7 +1182,7 @@
 						</div>
 					</section>
 					<section class="left" id="modules-3">
-						<h3 data-i18n="title">Modules</h3>
+						<h3 data-i18n="title">Modules: strict mode and context</h3>
 						<p data-i18n="text-1">Modules have a different execution context to traditional scripts:</p>
 						<ul>
 							<li>
@@ -1201,14 +1218,22 @@
 						<h3 data-i18n="title">Modules: dynamic import </h3>
 						<p data-i18n="text">
 							When <code>import</code> is called as a function, the module is imported asynchronously. <br>
-							This is very useful for downloading code on demand and optimising the loading time of your applications.
+							This is very useful for downloading code on demand (<i>lazy-loading</i>) and optimizing the loading time of your applications.
 						</p>
-						<img height="250" src="./assets/img/Image18.png">
+						<pre><code class="javascript hljs" data-trim>
+						function loadMyModule(){
+							import('./myModule.mjs')
+								.then(module => {
+									const defaultExport = module.default
+									const { myNamedExport, myOtherExport } = module;
+								})
+						}
+						</code></pre>
 					</section>
 					<section id="modules-5">
 						<h3 data-i18n="title">Modules: what about support?</h3>
 						<p data-i18n="text-1"><a href="https://caniuse.com/es6-module" target="_blank">Good support</a> (~95%) in 2022: Chrome 61+, Edge 16+, Firefox 60+</p>
-						<p data-i18n="text-2">But developers use ESM widely in their codebases that are converted to AMD-like bundles by bundlers like Webpack, Parcel, Rollup, esbuild...</p>
+						<p data-i18n="text-2">But developers use ESM widely in their codebases that are transformed into <b>bundles</b> by bundlers like Webpack, Parcel, Rollup, esbuild...</p>
 						<img height="200" src="./assets/img/Image19.png">
 						<p data-i18n="text-3">Bundlers are tools that precompile your code and reduce the browser's work by producing optimized JS bundles from a set of modules during a build step.</p>
 					</section>
@@ -1218,7 +1243,14 @@
 							Browsers that do not support modules won't load <code>&lt;script type="module"></code>
 							<br>but they can load an alternative script with the <code>nomodule</code> attribute.
 						</p>
-						<img height="125" src="./assets/img/Image20.png">
+						<pre><code class="html hljs" data-trim>
+							<!-- Browsers supporting ESM will load this file -->
+							&lt;script type="module" src="main.js"&gt;&lt;/script&gt;
+
+							<!-- Older browsers load this file -->
+							<!-- Browsers supporting ESM know they should NOT load it -->
+							&lt;script nomodule src="main-legacy.js"&gt;&lt;script&gt;
+						</code></pre>						
 						<p data-i18n="text-2">
 							Bundlers can take advantage of this attribute to produce <b>two bundles</b>:<br>
 							 a <span class="green">modern</span> bundle, and a <span class="blue">legacy</span> bundle with more transpiled code.</p>
@@ -1227,15 +1259,15 @@
 					<section class="left" id="modules-7">
 						<h3 data-i18n="title">Modules : recommandations</h3>
 						<p data-i18n="text-1">Always use ESM modules and avoid other existing module systems</p>
-						<p data-i18n="text-2">Using a bundler with the "Modern build" option</p>
-						<div class="flex-center">
-							<ul>
-								<li data-i18n="list-1">Parcel: for simplicity and speed of implementation</li>
-								<li data-i18n="list-2">Webpack: for complex web applications with advanced needs</li>
-								<li data-i18n="list-3">Rollup: for JS libraries</li>
-							</ul>
-							<img height="100" src="./assets/img/Image22.png" alt="">
-						</div>
+						<p data-i18n="text-2">Use a bundler that produce a nomodule legacy script if you need to support older browsers</p>						
+						
+						<p data-i18n="text-3">Popular bundlers:</p>
+						<ul>
+							<li data-i18n="list-1">Parcel: for simplicity and speed of implementation</li>
+							<li data-i18n="list-2">Webpack: for complex web applications with advanced needs</li>
+							<li data-i18n="list-3">Rollup: for JS libraries</li>
+						</ul>
+						<img height="100" src="./assets/img/Image22.png" alt="" style="float: right">
 					</section>
 				</section>
 				<section>
@@ -1394,10 +1426,10 @@ promise.finally(() => { // ES2018
 							const wait = promisify(setTimeout)
 
 							Promise.race([
-								fetch('/api/notifs').then(res => res.json()),
+								fetch('/api/products').then(res => res.json()),
 								wait(10000)
-							]).then(([notifs]) => {
-								if(notifs){ /* do something */ }
+							]).then((results) => {
+								if(results){ /* do something */ }
 							})
 						</code></pre>
 						<pre class="fragment fade"><code class="javascript hljs" data-trim>
@@ -1405,12 +1437,12 @@ promise.finally(() => { // ES2018
 								wait(1000),
 								Promise.resolve(data),
 								wait(2000)
-							])
+							]) // how long before this promise is resolved ?
 						</code></pre>
 						<pre class="fragment fade"><code class="javascript hljs" data-trim>
 							Promise.race([
 								cache ? Promise.resolve(cache) : Promise.race([]),
-								fetch('/api/data').then(res => res.json())
+								fetch('/api/products').then(res => res.json())
 							])
 						</code></pre>
 					</section>
@@ -1452,7 +1484,7 @@ async function myFunction() {
 	}
 
 	// this line is reached only after resolve/reject of myPromise
-	return 42
+	return result
 }</code></pre>
 					</section>
 
@@ -1546,15 +1578,15 @@ const keyboardSubscription = keyboardObservable.subscribe({
 						<p data-i18n="text-2">You can use these methods to create new macrotasks run at the next event loops:
 							<ul>
 								<li><code>setTimeout(callback, 0)</code>
-									<small class="grey" data-i18n="list-3">with delay set to zero to minimize waiting time</small>
+									<p class="grey" data-i18n="list-3">with delay set to zero to minimize waiting time</p>
 								</li>
 								<li>
 									<code>requestAnimationFrame(callback)</code>
-									<small class="grey" data-i18n="list-4">let the browser optimize when a callback is called to get a fluid animation (~ 60 frames per second)</small>
+									<p class="grey" data-i18n="list-4">let the browser optimize when a callback is called to get a fluid animation (~ 60 frames per second)</p>
 								</li>
 								<li>
-									<code>requestIdleCallback(callback)</code>
-									<small class="grey" data-i18n="list-5">let the browser optimize when to call the callback when the CPU is not heavily loaded <em>(non standard)</em></small>
+									<code>requestIdleCallback(callback)</code><br>
+									<p class="grey" data-i18n="list-5">let the browser optimize when to call the callback when the CPU is not heavily loaded <em>(non standard)</em></p>
 								</li>
 							</ul>
 						</p>
@@ -1619,7 +1651,7 @@ console.log(5)
 					</section>
 
 					<section class="left" id="why-prototype">
-						<h3 data-i18n="title">Why "prototype" ?</h3>
+						<h3 data-i18n="title">Why is it called "prototype" ?</h3>
 						<ul>
 							<li data-i18n="list-1">In industry, a <b>prototype</b> is a <b>real physical object</b>, on which mass-produced objects will be based.</li>
 							<li data-i18n="list-2">On the same analogy, a <b>class</b> would be more like a <b>plan or diagram to follow</b>, of a more abstract nature and which cannot be manipulated like an object.</li>
@@ -1675,7 +1707,7 @@ console.log(5)
 					<section id="beware-of-misuse-of-language">
 						<h3 data-i18n="title">Beware of misuse of language !</h3>
 						<div class="center" style="font-size: 200%; font-weight: bold">classes ≠ prototypes</div>
-						<p data-i18n="text-1">There are no classes in JavaScript, but the word is misused to refer to a prototype and its associated constructor.</p>
+						<p data-i18n="text-1">There are no classes in JavaScript, but the word is often misused to refer to a prototype and its associated constructor.</p>
 						<p data-i18n="text-2">Unlike classes, there is no difference in nature between a prototype and an object. A prototype can therefore be manipulated like any other object: assigned by reference, passed as a parameter, exported as a module...</p>
 						<img src="assets/img/kinds-of-oop.jpg" height="300" alt="Two kinds of OOP: an analogy with a classroom">
 					</section>
@@ -1691,8 +1723,8 @@ console.log(5)
 							console.log(bob.name)
 							▸ "Bob"
 
-							delete bob.name;
-							console.log(bob.name)
+							delete bob.name; // remove the own property
+							console.log(bob.name) // we go back to the delegated property value
 							▸ "Anonymous"
 						</code></pre>
 						<div class="left">
@@ -1710,13 +1742,13 @@ console.log(5)
 						<div class="center" data-i18n="text-1" style="font-size: 200%; font-weight: bold">interface, override, instance...</div>
 						<p data-i18n="text-2">Most of the class-based OOP vocabulary needs to be avoided:</p>
 						<ul>
-							<li data-i18n="list-1">The prototype is neither an <i>interface</i> nor a <i>contract</i> to fulfill for the object, but an API base on which to rely.</li>
-							<li data-i18n="list-2">We do not <i>override</i> properties, but we delegate those that are missing</li>
+							<li data-i18n="list-1">The prototype is neither an <i>interface</i> nor a <i>contract</i> to fulfill, but an API base on which to rely.</li>
+							<li data-i18n="list-2">We do not <i>override</i> properties, but we <i>delegate</i> those that are missing</li>
 							<li data-i18n="list-3">The word "instance" makes sense for an instance of a class because it can mean "example". With prototypes, the roles are reversed since it is the prototype that fits better the role of example.</li>
 						</ul>
-						<div class="note" data-i18n="note">
-							Despite these differences in definition, this vocabulary is still often used (including within the language itself) in order to remain familiar to those accustomed to Java and class-based OOP.<br/>
-							It is quite the same historical aberration that brought us the name <i>"Java"</i>Script.
+						<div class="note" style="font-style: italic;">
+							<p data-i18n="note-1">Despite these differences in definition, this vocabulary is often used by JavaScript developers, and sometimes even within the language itself.</p>
+							<p data-i18n="note-2">This is due to choices in the past to design the language so that it remains familiar to Java developers. It is the same kind of story that brought us the name <i style="color: orange">Java</i>Script.</p>
 						</div>
 					</section>
 
@@ -2090,7 +2122,7 @@ b2.speak();
 						<div class="ref" data-i18n="exo">Exercise 17</div>
 						<p data-i18n="text-1">Let's practice on a project example: a web components library</p>
 						<p data-i18n="text-2">Objects identified in the model:</p>
-						<ul>
+						<ul class="narrow">
 							<li><code>Component</code></li>
 							<li><code>Clickable</code></li>
 							<li><code>Focusable</code></li>
@@ -2136,7 +2168,7 @@ Object.getOwnPropertySymbols(obj)
 						</code></pre>
 					</section>
 
-					<section id="symbol-global-register">
+					<!--<section id="symbol-global-register">
 						<h3 data-i18n="title">Symbols - Global register</h3>
 						<p data-i18n="text">A global register exists for symbols nevertheless:</p>
 						<pre><code class="javascript hljs js" data-trim>
@@ -2149,7 +2181,7 @@ Object.getOwnPropertySymbols(obj)
 						<div class="note" data-i18n="note">
 							Use with moderation, otherwise you will lose the primary interest of symbols, namely to be a unique reference
 						</div>
-					</section>
+					</section>-->
 
 					<section id="symbol-know">
 						<h3 data-i18n="title">Symbols - Known symbols</h3>
@@ -2231,7 +2263,7 @@ for(let n of counter123) console.log(n);
 
 					<section id="proxy">
 						<h3 data-i18n="title">Proxy</h3>
-						<p data-i18n="text-1">Proxies, introduced in ES2015, let you intercept and customize the operations made on objects:</p>
+						<p data-i18n="text-1">Proxies, introduced in ES2015, let you intercept and customize any operations made on an object:</p>
 						<ul class="narrow">
 							<li data-i18n="list-1">enumerate and describe its properties</li>
 							<li data-i18n="list-2">define, assign, or delete some properties</li>
@@ -2239,8 +2271,8 @@ for(let n of counter123) console.log(n);
 							<li data-i18n="list-4">get or set its prototype</li>
 							<li data-i18n="list-5">...</li>
 						</ul>
-						<p data-i18n="text-2">A <code>Proxy</code> does not change the original object, it returns a new object reference, and all the operations shall be done on this new reference.</p>
-						<p data-i18n="text-3">By default, no operation is intercepted nor modified so the proxy object is indistinguishable from the original object.</p>
+						<p data-i18n="text-2">A <code>Proxy</code> does not change the original object: it returns a new object, the proxy.</p>
+						<p data-i18n="text-3">By default, no operation is intercepted so the proxy is indistinguishable from the original object.</p>
 						<pre style="font-size: 60%"><code class="javascript hljs js" data-trim>
 const obj = { foo: "bar" }
 const proxy = new Proxy(obj, {
@@ -2311,7 +2343,7 @@ new Proxy(obj, {
 							<li data-i18n="list-4">Hiding private properties</li>
 							<li data-i18n="list-5">Function memoization for performance imrpovements</li>
 							<li data-i18n="list-6">Debugging, performance measurement</li>
-							<li data-i18n="list-7">...</li>
+							<li data-i18n="list-7">and probably many others we did no invented yet...</li>
 						</ul>
 					</section>
 				</section>
@@ -2427,7 +2459,7 @@ trim("     Hello !    ")
 						</div>
 					</section>
 
-					<section id="partial-application">
+					<!--<section id="partial-application">
 						<h3 data-i18n="title">Partial application with <code>fn.bind</code></h3>
 						<p data-i18n="text">Partial application can also be done with the <code>bind</code> function in <code>Function.prototype</code>:</p>
 						<pre><code class="javascript hljs js" data-trim>
@@ -2441,7 +2473,7 @@ whereAgeIs(n => n > 10, data)
 const whereAgeIsOver18 = where.bind(null, "age", n => n > 18)
 whereAgeIsOver18(data)
 						</code></pre>
-					</section>
+					</section>-->
 
 					<section id="functional-refactoring-in-practice">
 						<h3 data-i18n="title">Functional refactoring in practice</h3>
@@ -2636,7 +2668,7 @@ document.querySelector("#results").textContent = output
 						<h3 data-i18n="title">Functional refactoring in practice</h3>
 						<p data-i18n="text">To refactor a code and obtain pure atomic generic and composable functions:</p>
 						<img src="./assets/img/cook.png" style="float: right; width: 200px" />
-						<ol>
+						<ol style="display: block">
 							<li data-i18n="list-1">
 								<i class="grey">Collecting ingredients</i>
 								<br>Replace non-local variables with new arguments or return values
@@ -2653,7 +2685,7 @@ document.querySelector("#results").textContent = output
 								<i class="grey">Boil and simmer</i>
 								<br>Extract arbitrary values to make it more generic
 							</li>
-							<li data-i18n="list-4">
+							<li data-i18n="list-5">
 								<i class="grey">Add the spices</i>
 								<br>Curry functions to reduce the arguments and simplify code
 							</li>

@@ -326,12 +326,12 @@
        "list-4": "le recours aux variables globales et les <code>&lt;script></code> à ordonner"
      },
      "modules-2": {
-       "title": "Modules",
+       "title": "Modules: import et export",
        "text-1": "Deux mots-clés: <code>import</code> et <code>export</code>",
        "text-2": "On distingue les import nommés et les imports par défaut"
      },
      "modules-3": {
-       "title": "Modules",
+       "title": "Modules: mode strict et contexte",
        "text-1": "Les modules ont un contexte d'exécution différent des scripts classiques:",
        "list-1": "mode strict utilisé par défaut <code>(\"use strict\";)</code>",
        "list-2": "exceptions explicites sur certaines erreurs silencieuses",
@@ -349,8 +349,8 @@
      "modules-5": {
        "title": "Modules: quid du support ?",
        "text-1": "<a href=\"https://caniuse.com/es6-module\" target=\"_blank\">Support moyen</a> (~95%) en 2022: Chrome 61+, Edge 16+, Firefox 60+",
-       "text-2": "Mais les développeurs utilisent largement ESM dans leurs bases de code qui sont converties en bundles de type AMD par des bundlers comme Webpack, Parcel, Rollup, esbuild...",
-       "text-3": "Les bundlers sont des outils qui précompilent votre code et réduisent le travail du navigateur en produisant des bundles JS optimisés à partir d'un ensemble de modules lors d'une étape de build."
+       "text-2": "Mais les développeurs utilisent largement les modules ESM dans leurs projets, en les transformant en bundles par des bundlers comme Webpack, Parcel, Rollup, esbuild...",
+       "text-3": "Les bundlers sont des outils qui précompilent votre code et réduisent le travail du navigateur en produisant des bundles JS optimisés à partir d'un ensemble de modules."
      },
      "modules-6": {
        "title": "Modules: script nomodule",
@@ -361,10 +361,11 @@
      "modules-7": {
        "title": "Modules: recommandations",
        "text-1": "Utiliser systématiquement les modules ESM et proscrire les autres systèmes de modules existants",
-       "text-2": "Utiliser un bundler avec l'option « Modern build »",
+       "text-2": "Utiliser un bundler qui produit un script nomodule legacy si vous devez supporter d'anciens navigateurs",
+       "text-3": "Bundlers popuilaires:",
        "list-1": "Parcel : pour la simplicité et rapidité de mise en place",
        "list-2": "Webpack: pour les applications Web complexes avec des besoins avancés",
-       "list-3": "pour les bibliothèques JS"
+       "list-3": "Rollup: pour les bibliothèques JS"
      },
      "chapter-4": {
        "title": "Gérer l'asynchronisme",
@@ -493,7 +494,7 @@
        "note": "Ne réaffectez pas le prototype dans les parties critiques pour les performances de votre application car il est difficile à optimiser pour les moteurs JavaScript classiques"
      },
      "why-prototype": {
-       "title": "Pourquoi « Prototype » ?",
+       "title": "Pourquoi ça s'appelle « Prototype » ?",
        "list-1": "En industrie, un prototype est un <b>objet physique réel</b>, sur lequel seront basés des objets produits en série.",
        "list-2": "Sur la même analogie, une <b>classe</b> s'apparenterait plutôt à un /b>plan ou schéma à respecter</b>, de nature plus abstraite et qui ne peut pas se manipuler comme un objet.",
        "list-3": "Un prototype est pris pour exemple pour créer les objets produits, tandis qu'un objet produit peut être pris comme exemple pour l'implémentation d'une classe.",
@@ -529,10 +530,11 @@
        "title": "Attention aux abus de langage !",
        "text-1": "Interface, surcharge, instance…",
        "text-2": "Beaucoup d'éléments du vocabulaire classique sont à revoir:",
-       "list-1": "Le prototype n'est ni une <em>interface</em> ni un <em>contrat</em> à remplir pour l'objet, mais une base d'API sur laquelle se reposer.",
+       "list-1": "Le prototype n'est ni une <em>interface</em> ni un <em>contrat</em> à remplir, mais une base d'API sur laquelle se reposer.",
        "list-2": "On ne <em>surcharge</em> pas des propriétés, mais on délègue celles qui manquent",
        "list-3": "Le mot « instance » est un anglicisme signifiant « exemple » pour parler d'un exemplaire d'une classe. Avec les prototypes, les rôles sont inversés puisque c'est le prototype qui joue davantage le rôle d'exemple.",
-       "note": "Malgré ces écarts de définition, ce vocabulaire est encore souvent utilisé (y compris au sein même du langage) afin de rester familier pour les habitués de Java et de la POO par classes. C'est la même aberration historique qui a donné le nom « Java »Script."
+       "note-1": "Malgré ces écarts de définition, ce vocabulaire est encore souvent utilisé par les développeurs JavaScript, et parfois même au sein du langage.",
+       "note-2": "Cela est dû à des choix historiques dans la conception du langage visant à rester familier pour les développeurs Java. C'est une histoire similaire qui a donné le nom <i style='color:orange'>Java</i>Script."
      },
      "constructor-and-operator-new": {
        "title": "Constructeurs et opérateur <span class=\"blue\">new</span>",
@@ -682,14 +684,14 @@
      },
      "proxy": {
        "title": "Proxy",
-       "text-1": "Les proxys, introduits dans ES2015, permettent d'intercepter et de personnaliser les opérations effectuées sur les objets :",
+       "text-1": "Les proxys, introduits dans ES2015, permettent d'intercepter et de personnaliser toutes les opérations effectuées sur un objet :",
        "list-1": "énumération et description des propriétés",
        "list-2": "définition, assignation et suppression de propriétés",
        "list-3": "invocations de fonctions et de constructeurs",
        "list-4": "assignation et récupération du prototype",
        "list-5": "...",
-       "text-2": "Un <code>proxy</code> ne change pas l'objet d'origine, il renvoie une nouvelle référence d'objet, et toutes les opérations doivent être effectuées sur cette nouvelle référence.",
-       "text-3": "Par défaut, aucune opération n'est interceptée ni modifiée, de sorte que l'objet proxy ne peut pas être distingué de l'objet d'origine."
+       "text-2": "Un <code>proxy</code> ne change pas l'objet d'origine: il renvoie un nouvel objet, le proxy.",
+       "text-3": "Par défaut, aucune opération n'est interceptée, donc le proxy ne peut pas être distingué de l'objet d'origine."
      },
      "reflect-api": {
        "title": "Reflect API",
@@ -702,11 +704,11 @@
        "exo": "Exercice 19",
        "list-1": "Defensive objects: empêcher la mutation directe d'un objet, rejeter une exception lors de l'accès à une propriété non définie…",
        "list-2": "Watchers: Pub/Sub sur les mutations d'un objet (<a href=\"https://vuejs.org/guide/extras/reactivity-in-depth.html#how-reactivity-works-in-vue\" target=\"_blank\">Vue.js</a>, <a href=\"https://mobx.js.org/configuration.html#proxy-support\" target=\"_blank\">MobX</a>)",
-       "list-3": "Typage fort: valide le type ou la valeur assignée (<a href=\"https://objectmodel.js.org\" target=\"_blank\">objectmodel.js.org)</a>",
+       "list-3": "Typage fort: valider le type ou la valeur assignée aux propriétés (<a href=\"https://objectmodel.js.org\" target=\"_blank\">objectmodel.js.org)</a>",
        "list-4": "Cacher des propriétés privées",
-       "list-5": "Mémorisation des fonctions pour l'amélioration des performances",
-       "list-6": "Mesures de performance et debug",
-       "list-7": "..."
+       "list-5": "Mémoïsation automatique de fonctions pour améliorer les performances",
+       "list-6": "Mesures de performance et débogage",
+       "list-7": "et probablement bien d'autres que nous n'avons pas encore inventé..."
      },
      "chapter-6": {
        "title": "Programmation fonctionnelle",
@@ -732,7 +734,7 @@
        "title": "API chaînables",
        "exo": "Exercice 20",
        "text-1": "Une méthode <b>chaînable</b> retourne son propre contexte d'exécution (<code>return this</code>) ou un objet du même type/prototype afin de pouvoir enchaîner les appels à cette méthode.",
-       "text-2": "Exemple: méthodes chaînable <code>Array.prototype</code>",
+       "text-2": "Exemple: méthodes chaînables de <code>Array.prototype</code>",
        "text-3": "Les API chaînables sont pratiques à utiliser car elles réduisent les séquences d'instructions à une seule expression. Ils ont fait le succès de fameuses librairies JS comme <a href=\"https://jquery.com\" target=\"_blank\">jQuery</a> ou <a href=\"https://lodash.com\" target=\"_blank\">lodash</a>."
      },
      "function-composition": {
@@ -746,17 +748,17 @@
        "text-3": "Comparée aux API chaînables, la composition de fonctions privilégie les fonctions indépendantes par rapport aux méthodes, ce qui évite de surcharger les objets avec un trop grand nombre de propriétés."
      },
      "currying": {
-       "title": "Curryfication (Currying)",
+       "title": "Curryfication (Currying en anglais)",
        "text-1": "Tire son nom de <a href=\"https://en.wikipedia.org/wiki/Haskell_Curry\" target=\"_blank\">Haskell Curry</a>, un mathématicien qui a posé les bases de la programmation fonctionnelle.",
-       "text-2": "La <b>curryfication</b> consiste à transformer transformer une fonction qui prend N arguments en une fonction prenant uniquement le 1er argument et retournant une autre fonction prenant uniquement le 2ème argument, et ainsi de suite jusqu'à avoir collecté les N arguments nécessaires pour calculer et retourner le résultat final:",
-       "text-3": "Les fonctions fléchées facilitent la transformation des fonctions en fonctions curryées :",
+       "text-2": "La <b>curryfication</b> consiste à transformer transformer une fonction prenant N arguments en une fonction prenant uniquement le 1er argument et retournant une autre fonction prenant uniquement le 2ème, et ainsi de suite jusqu'à avoir collecté les N arguments nécessaires pour retourner le résultat final:",
+       "text-3": "Les fonctions fléchées facilitent la transformation des fonctions en fonctions curryfiées :",
        "text-4": "Une définition plus souple autorise à passer un nombre quelconque d'arguments:"
      },
      "currying-use-cases": {
        "title": "Curryfication: cas d'utilisation",
        "exo": "Exercice 22",
        "text": "La <b>curryfication</b> est utilisée pour appliquer une partie des arguments pour décliner une fonction générique en une version plus spécialisée de celle-ci : c'est ce qu'on appelle l'<b>application partielle</b>.",
-       "note": "En pratique, nous introduisons souvent la curryfication dans une base de code dans le sens inverse :<br>à partir d'une fonction effectuant un travail spécifique, nous la réécrivons dans une version plus générique, puis utilisons une application partielle pour revenir au cas d'utilisation spécifique d'origine."
+       "note": "En pratique, nous introduisons souvent la curryfication dans une base de code dans le sens inverse :<br>à partir d'une fonction effectuant un travail spécifique, nous la réécrivons dans une version plus générique, puis nous utilisons une application partielle pour revenir au cas d'utilisation spécifique d'origine."
      },
      "partial-application": {
        "title": "Application partielle avec <code>fn.bind</code>",
@@ -790,7 +792,7 @@
      "functional-refactoring-in-practice-6": {
        "title": "Refactoring fonctionnel en pratique",
        "note-1": "<b>Étape 5 : fonctions de curryfication</b> pour réduire le nombre d'arguments et supprimer les fonctions de mappage superflues",
-       "note-2": "La Curryfication est très efficace pour faciliter la composition de fonctions génériques."
+       "note-2": "La curryfication est très efficace pour faciliter la composition de fonctions génériques."
      },
      "functional-refactoring-in-practice-7": {
        "title": "Refactoring fonctionnel en pratique",
@@ -853,50 +855,49 @@
        "list-1": "JSX est un autre sur-ensemble de JavaScript développé par Facebook, à l'origine pour le framework <b>React</b>",
        "list-2": "JSX est maintenant pris en charge par d'autres frameworks que React, tels que Vue.js ou Preact",
        "list-3": "JSX est une abstraction pour <b>manipuler des éléments DOM virtuels</b>, ce qui est généralement fait avec des modèles et une syntaxe de modèle personnalisée dans d'autres frameworks.",
-       "note": "La popularité de JSX stagne et le langage fait encore débat dans la communauté JS, notamment à cause des conflits de mots-clés HTML vs JS ; par exemple, l'attribut HTML \"class\" dans JSX doit être réécrit \"className\" pour éviter tout conflit avec l'opérateur de classe dans JavaScript."
+       "note": "La popularité de JSX stagne et le langage fait encore débat dans la communauté JS, notamment à cause des conflits de mots-clés HTML vs JS ; par exemple, l'attribut HTML \"class\" dans JSX doit être réécrit \"className\" pour éviter tout conflit avec l'opérateur <code>class</code> en JavaScript."
      },
      "retrospective": {
-       "chapter-1": "Préambule",
-       "list-1": "ECMAScript, TC39 et les versions de JavaScript",
-       "chapter-2": "Une réintroduction à JavaScript",
-       "list-2": "Primitives et Objets",
-       "list-4": "Descripteurs de propriétés",
-       "list-5": "Scopes et Closures",
-       "list-6": "Fonctions et contextes",
-       "list-7": "Cast implicites",
-       "chapter-3": "Mise à niveau ES2015",
-       "list-8": "Arrow functions",
-       "list-9": "Paramètres par défaut",
-       "list-10": "Spread / Rest",
-       "list-11": "Destructuring",
-       "list-12": "Template literals",
-       "list-13": "Map et Sets",
-       "list-14": "Modules",
-       "chapter-4": "Gérer l'asynchronisme",
-       "list-15": "Asynchrone, c'est quoi",
-       "list-16": "Modules",
-       "list-17": "Callbacks et modèle Publisher/Subscriber",
-       "list-18": "Promises",
-       "list-19": "async / await",
-       "list-20": "Observables",
-       "chapter-5": "Orienté Objet",
-       "list-21": "Prototypes et délégation",
-       "list-22": "class / super / extends",
-       "list-23": "Composition d'objets",
-       "list-24": "Symboles, itérables et générateurs",
-       "list-25": "Proxies",
-       "chapter-6": "Orienté Fonctionnel",
-       "list-26": "Récursivité",
-       "list-27": "API chaînables",
-       "list-28": "Composition de fonctions",
-       "list-29": "Curryfication",
-       "chapter-7": "Transpileurs",
-       "list-30": "Babel",
-       "list-31": "TypeScript, JSX"
+      "chapter-1": "Préambule",
+      "list-1": "ECMAScript, TC39 et les versions de JavaScript",
+      "chapter-2": "Une réintroduction à JavaScript",
+      "list-2": "Primitives et Objets",
+      "list-3": "Descripteurs de propriétés",
+      "list-4": "Scopes et Closures",
+      "list-5": "Fonctions et contextes",
+      "list-6": "Cast implicites",
+      "chapter-3": "Mise à niveau ES2015",
+      "list-7": "Arrow functions",
+      "list-8": "Paramètres par défaut",
+      "list-9": "Spread / Rest",
+      "list-10": "Destructuring",
+      "list-11": "Template literals",
+      "list-12": "Map et Sets",
+      "list-13": "Modules",
+      "chapter-4": "Gérer l'asynchronisme",
+      "list-14": "Asynchrone, c'est quoi",
+      "list-15": "Callbacks et Pub/Sub",
+      "list-16": "Promises",
+      "list-17": "async / await",
+      "list-18": "Observables",
+      "chapter-5": "Orienté Objet",
+      "list-19": "Prototypes et délégation",
+      "list-20": "class / super / extends",
+      "list-21": "Composition d'objets",
+      "list-22": "Symboles, itérables et générateurs",
+      "list-23": "Proxies",
+      "chapter-6": "Orienté Fonctionnel",
+      "list-24": "Récursivité",
+      "list-25": "API chaînables",
+      "list-26": "Composition de fonctions",
+      "list-27": "Curryfication",
+      "chapter-7": "Transpileurs",
+      "list-28": "Babel",
+      "list-29": "TypeScript, JSX"
      },
      "ending": {
        "title": "JavaScript Avancé",
-       "description": "Fin de formation, félicitations vous avez survécu !"
+       "description": "Fin de formation, félicitations !"
      }
    },
    "menubar": {
