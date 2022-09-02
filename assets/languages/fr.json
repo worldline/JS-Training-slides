@@ -448,12 +448,16 @@
        "title": "Observable: exemple d'API (de <a href=\"https://rxjs.dev/guide/observable\" target=\"_blank\">RxJS</a>)",
        "exo": "Exercice 14"
      },
-     "tasks-microtasks-and-event-loop": {
-       "title": "Tasks, microtasks, boucle d'événements",
-       "text-1": "La boucle d'événements (<b>event loop</b>) est le mécanisme qui dépile régulièrement les appels asynchrones.",
-       "text-2": "Entre chaque itération de la boucle, le navigateur refait le rendu de la page et traite les événements utilisateur (clic, scroll etc.)",
-       "text-3": "Les moteurs JS modernes stockent les appels asynchrones dans deux piles:",
-       "list-1": "les <b>tasks</b>, dépilées à la fin de chaque boucle d'événements (exemples: <code>setTimeout</code>, <code>setInterval</code>, <code>fetch</code>)",
+     "event-loop": {
+      "title": "La boucle d'événements",
+      "text-1": "La <b>boucle d'événements</b> est le mécanisme qui dépile périodiquement les appels asynchrones.",
+      "text-2": "Entre chaque itération de la boucle, le navigateur fait un nouveau rendu de la page et traite les événements utilisateur (clic, scroll etc.)",
+      "text-3": "À la fin de chaque boucle, les callbacks stockés dans les piles sont déclenchés: event listeners, timeouts, promesses résolues..."
+     },
+     "tasks-microtasks": {
+       "title": "Tâches et micro-tâches",
+       "text-1": "Les moteurs JS modernes stockent les appels asynchrones dans deux types de piles:",
+       "list-1": "les <b>tasks</b>, dépilées à la fin de chaque boucle (exemples: <code>setTimeout</code>, <code>setInterval</code>, <code>fetch</code>)",
        "list-2": "les <b>microtasks</b>, dépilées à la fin de chaque task (exemples: <code>promise.then</code>, <code>process.nextTick</code>)"
      },
      "work-with-the-event-loop": {
