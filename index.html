@@ -1159,26 +1159,26 @@
 					</section>
 					<section id="modules-2">
 						<h3 data-i18n="title">Modules: import and export</h3>
-						<div class="flex-center">
-							<div>
-								<p data-i18n="text-1">Two keywords: <code>import</code> and <code>export</code></p>
-								<p data-i18n="text-2">A distinction is made between <b>named</b> exports and <b>default</b> exports</p>
-								<pre><code class="javascript hljs" data-trim>
-									// default import
-									import MonModule from './mon-module.js' 
+						<img height="350" src="./assets/img/Image14.png" style="float: right">
+						<p data-i18n="text-1">Two keywords: <code>import</code> and <code>export</code></p>
+						<p data-i18n="text-2">You can have <b>named</b> exports and <b>default</b> exports</p>
+						<pre><code class="javascript hljs" data-trim>
+							// default import
+							import MyModule from './my-module.js' 
 
-									// named imports
-									import { a, b as two } from 'module' 
+							// named imports
+							import { a, b as moduleB } from 'module' 
 
-									import React, { Component } from 'react'
-								</code></pre>
-								<pre><code class="javascript hljs" data-trim>
-									export const a = 42
-									export function b(){ ... }
-									export default { Component, View }
-								</code></pre>
-							</div>
-							<img height="350" src="./assets/img/Image14.png">
+							import React, { Component } from 'react'
+						</code></pre>
+						<pre><code class="javascript hljs" data-trim>
+							/* in my-module.js */
+							export const a = "something"
+							export function b(){ ... }
+							export default const MyModule = { a, b }
+						</code></pre>
+						<div class="note info" data-i18n="note-1">
+							Named exports are recommended over default exports because they are easier to resolve, autocomplete and refactor.
 						</div>
 					</section>
 					<section class="left" id="modules-3">

@@ -328,7 +328,8 @@
      "modules-2": {
        "title": "Modules: import et export",
        "text-1": "Deux mots-clés: <code>import</code> et <code>export</code>",
-       "text-2": "On distingue les import nommés et les imports par défaut"
+       "text-2": "On distingue les import nommés et les imports par défaut",
+       "note-1": "Les imports nommés sont recommandés plutôt que ceux par défaut car ils sont plus facile à résoudre, autocompléter et refactor par les IDE."
      },
      "modules-3": {
        "title": "Modules: mode strict et contexte",
