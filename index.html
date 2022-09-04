@@ -1222,11 +1222,10 @@
 						</p>
 						<pre><code class="javascript hljs" data-trim>
 						function loadMyModule(){
-							import('./myModule.mjs')
-								.then(module => {
-									const defaultExport = module.default
-									const { myNamedExport, myOtherExport } = module;
-								})
+							import('./myModule.mjs').then(module => {
+								const defaultExport = module.default
+								const { myNamedExport, myOtherExport } = module;
+							})
 						}
 						</code></pre>
 					</section>
@@ -1356,7 +1355,7 @@ doSomething(function(result){
 	doAnotherThing(result, function(newResult){
 
 		doFinalThing(newResult, function(finalResult){
-			console.log("Final result: ", finalResult)
+			console.log(finalResult)
 		}, failureCallback)
 
 	}, failureCallback)
@@ -1371,7 +1370,7 @@ doSomething()
 	return doFinalThing(newResult)
 })
 .then(function(finalResult){
-	console.log("Final result", finalResult)
+	console.log(finalResult)
 })
 .catch(failureCallback)
 							</code></pre>

@@ -345,7 +345,7 @@
      },
      "modules-4": {
        "title": "Modules: import dynamique",
-       "text": "Quand <code>import</code> est appelé comme une fonction, le module est importé de façon asynchrone. <br>C'est très utile pour télécharger du code à la demande et optimiser le temps de chargement de vos applications."
+       "text": "Quand <code>import</code> est appelé comme une fonction, le module est importé de façon asynchrone. <br>C'est très utile pour télécharger du code à la demande (lazy-loading) et optimiser le temps de chargement de vos applications."
      },
      "modules-5": {
        "title": "Modules: quid du support ?",
@@ -356,7 +356,7 @@
      "modules-6": {
        "title": "Modules: script nomodule",
        "text-1": "Les navigateurs qui ne prennent pas en charge les modules ne chargeront pas <br><code>&lt;script type=\"module\"></code>mais ils peuvent charger un script alternatif avec l'attribut nomodule.",
-       "text-2": "Les bundlers peuvent profiter de cet attribut pour produire <b>deux bundles :</b><br>un bundle <span class=\"green\">moderne</span> et un bundle <span class=\"blue\">hérité</span> avec plus de code transpilé.",
+       "text-2": "Les bundlers peuvent profiter de cet attribut pour produire <b>deux bundles :</b><br>un bundle <span class=\"green\">moderne</span> et un bundle <span class=\"blue\">legacy</span> avec davantage de code transpilé.",
        "text-3": "Le bundle moderne sera plus léger et plus efficace, de sorte que la prise en charge des anciens navigateurs ne dégrade pas les performances des navigateurs modernes utilisés par la majorité des utilisateurs."
      },
      "modules-7": {
