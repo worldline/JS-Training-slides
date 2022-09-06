@@ -1029,7 +1029,7 @@
 							}
 
 							doSomething({
-								config: { ... },
+								config: { param: "something" },
 								options: { verbose: true }
 							})
 						</code></pre>
@@ -1044,7 +1044,8 @@
 								maxPrice = 1000,
 								inStock = true
 							}) => {
-								(...)
+								// do some complex search here
+
 								return { results, size, lowestPrice }
 							}
 
@@ -1088,7 +1089,7 @@
 								console.log({ strings, vars });
 
 								return strings.reduce(
-									(out, str, i) => `${out}${str}${vars[i] || "").toUpperCase()}`,
+									(out, str, i) => `${out}${str}${(vars[i] || "").toUpperCase()}`,
 									""
 								)
 							}
