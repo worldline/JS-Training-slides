@@ -2423,10 +2423,10 @@ new Proxy(obj, {
 						<p data-i18n="text-1" style="font-style: italic; color: gray">From <a href="https://en.wikipedia.org/wiki/Haskell_Curry" target="_blank">Haskell Curry</a>, a mathematician who laid the foundations of functional programming.</p>
 						<p data-i18n="text-2"><b>Currying</b> means transforming a function that takes N arguments into a function taking the 1st argument only and returning another function taking the 2nd argument only, and so on until having collected the N arguments necessary to compute and return the final result:</p>
 						<p class="center" style="font-size: 150%"><code>f(a,b,c) ⇔ curry(f)(a)(b)(c)</code></p>
-						<p data-i18n="text-3">Arrow functions make it easy to transform functions into curryied ones:</p>
+						<p data-i18n="text-3">Arrow functions make it easy to transform functions into curried ones:</p>
 						<pre><code class="javascript hljs js" data-trim>
 							const sum = (a,b,c) => a + b + c
-							const sum = a => b => c => a + b + c // curryied version
+							const sum = a => b => c => a + b + c // curried version
 						</code></pre>
 						<br>
 						<p data-i18n="text-4">A more flexible definition allows passing any number of arguments at each step:</p>
