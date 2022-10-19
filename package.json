@@ -1,15 +1,19 @@
 {
-  "name": "formation-javascript-avance",
-  "version": "1.0.0",
-  "description": "Formation JavaScript Avancé",
+  "name": "js-training-slides",
+  "version": "1.1.0",
+  "description": "JavaScript Advanced Training Slides",
   "repository": {
     "type": "git",
-    "url": "https://github.com/worldline/JS-Training.git"
+    "url": "https://github.com/worldline/JS-Training-slides.git"
   },
   "scripts": {
-    "dev": "vite"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "deploy": "node ./build/deploy.js"
   },
   "devDependencies": {
+    "shelljs": "^0.8.5",
     "vite": "^3.0.0",
     "vite-plugin-pwa": "^0.13.1"
   },

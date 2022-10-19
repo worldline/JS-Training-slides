@@ -2,6 +2,8 @@ import { VitePWA } from "vite-plugin-pwa"
 
 export default {
     plugins: [
-        VitePWA()
+        VitePWA({
+            registerType: 'autoUpdate'
+        })
     ]
 }

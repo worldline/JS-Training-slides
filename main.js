@@ -1,3 +1,8 @@
+import RevealNotes from "./assets/plugin/notes/notes.esm.js"
+import RevealHighlight from "./assets/plugin/highlight/highlight.esm.js"
+import Internation from "./assets/plugin/internation/internation.esm.js"
+import FR from "./assets/languages/fr.json"
+
 import Reveal from './assets/lib/reveal.esm.js'
 
 Reveal.initialize({  
@@ -9,7 +14,7 @@ Reveal.initialize({
     languages: {
       fr: {
         name: 'Français',
-        dictionary: './assets/languages/fr.json'
+        dictionary: FR
       },
     }
   },
