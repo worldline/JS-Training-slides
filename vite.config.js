@@ -4,7 +4,10 @@ export default {
     base: "/JS-Training-slides/",
     plugins: [
         VitePWA({
-            registerType: 'autoUpdate'
+            registerType: 'autoUpdate',
+            workbox: {
+                globPatterns: ["**/*.{js,css,html,jpg,png}"]
+            }
         })
     ]
 }
