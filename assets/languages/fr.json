@@ -96,7 +96,7 @@
      "exercices-training": {
        "title": "Exercices durant la formation",
        "text-1": "Slides et exercices disponibles sur ce repo Github: <br> <a href=\"https://github.com/worldline/JS-Training\" target=\"-blank\">https://github.com/worldline/JS-Training</a>",
-       "text-2": "Faites les exercices depuis votre navigateur à cette adresse: <a href=\"https://codesandbox.io/s/github/SDCOAdvocates/JS-Training\" target=\"-blank\">https://codesandbox.io/s/github/SDCOAdvocates/JS-Training</a>",
+       "text-2": "Faites les exercices depuis votre navigateur à cette adresse: <a href=\"https://codesandbox.io/s/github/worldline/JS-Training\" target=\"_blank\">https://codesandbox.io/s/github/worldline/JS-Training</a>",
        "text-3": "Forkez pour créer votre version personnelle du repo de travail. Vous pouvez la publier sur votre compte personnel Github si vous en avez un.",
        "text-4": "Pour chaque exercice, corrigez la source pour valider le test associé."
      },
