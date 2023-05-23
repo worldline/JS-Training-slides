@@ -14,8 +14,8 @@
   },
   "devDependencies": {
     "shelljs": "^0.8.5",
-    "vite": "^3.0.0",
-    "vite-plugin-pwa": "^0.13.1"
+    "vite": "^4.0.0",
+    "vite-plugin-pwa": "^0.14.7"
   },
   "keywords": [
     "training",

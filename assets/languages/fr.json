@@ -332,6 +332,10 @@
        "note-1": "Les imports nommés sont recommandés plutôt que ceux par défaut car ils sont plus facile à résoudre, autocompléter et refactor par les IDE."
      },
      "modules-3": {
+      "title": "Modules: import dynamique",
+      "text": "Quand <code>import</code> est appelé comme une fonction, le module est importé de façon asynchrone. <br>C'est très utile pour télécharger du code à la demande (lazy-loading) et optimiser le temps de chargement de vos applications."
+    },
+     "modules-4": {
        "title": "Modules: mode strict et contexte",
        "text-1": "Les modules ont un contexte d'exécution différent des scripts classiques:",
        "list-1": "mode strict utilisé par défaut <code>(\"use strict\";)</code>",
@@ -343,28 +347,19 @@
        "list-6": "Sur navigateur",
        "list-7": "Sur Node.js: utiliser l'extension <code>.mjs</code> au lieu de <code>.js</code>, ou avoir <code>{ type: \"module\" }</code> dans package.json"
      },
-     "modules-4": {
-       "title": "Modules: import dynamique",
-       "text": "Quand <code>import</code> est appelé comme une fonction, le module est importé de façon asynchrone. <br>C'est très utile pour télécharger du code à la demande (lazy-loading) et optimiser le temps de chargement de vos applications."
-     },
      "modules-5": {
        "title": "Modules: quid du support ?",
-       "text-1": "<a href=\"https://caniuse.com/es6-module\" target=\"_blank\">Support moyen</a> (~95%) en 2022: Chrome 61+, Edge 16+, Firefox 60+",
+       "text-1": "<a href=\"https://caniuse.com/es6-module\" target=\"_blank\">Support bon</a> (~96%) en 2023: Chrome 61+, Edge 16+, Firefox 60+",
        "text-2": "Mais les développeurs utilisent largement les modules ESM dans leurs projets, en les transformant en bundles par des bundlers comme Webpack, Parcel, Rollup, esbuild...",
        "text-3": "Les bundlers sont des outils qui précompilent votre code et réduisent le travail du navigateur en produisant des bundles JS optimisés à partir d'un ensemble de modules."
      },
      "modules-6": {
-       "title": "Modules: script nomodule",
-       "text-1": "Les navigateurs qui ne prennent pas en charge les modules ne chargeront pas <br><code>&lt;script type=\"module\"></code>mais ils peuvent charger un script alternatif avec l'attribut nomodule.",
-       "text-2": "Les bundlers peuvent profiter de cet attribut pour produire <b>deux bundles :</b><br>un bundle <span class=\"green\">moderne</span> et un bundle <span class=\"blue\">legacy</span> avec davantage de code transpilé.",
-       "text-3": "Le bundle moderne sera plus léger et plus efficace, de sorte que la prise en charge des anciens navigateurs ne dégrade pas les performances des navigateurs modernes utilisés par la majorité des utilisateurs."
-     },
-     "modules-7": {
        "title": "Modules: recommandations",
        "text-1": "Utiliser systématiquement les modules ESM et proscrire les autres systèmes de modules existants",
-       "text-2": "Utiliser un bundler qui produit un script nomodule legacy si vous devez supporter d'anciens navigateurs",
-       "text-3": "Bundlers popuilaires:",
-       "list-1": "Parcel : pour la simplicité et rapidité de mise en place",
+       "text-2": "Utiliser un bundler qui produit un bundle optimisé en production",
+       "text-3": "Utiliser des imports dynamiques pour charger à la demande les modules qui ne sont pas nécessaires au contenu principal de la page",
+       "text-4": "Bundlers populaires:",
+       "list-1": "Vite : pour sa simplicité et sa rapidité",
        "list-2": "Webpack: pour les applications Web complexes avec des besoins avancés",
        "list-3": "Rollup: pour les bibliothèques JS"
      },
@@ -442,7 +437,7 @@
        "text-1": "Un pattern à mi-chemin entre les Promise et le Pub/Sub:",
        "list-1": "Promesse pouvant être résolue en plusieurs temps",
        "list-2": "Event emitter avec un concept de complétion",
-       "text-2": "Une <a href=\"https://github.com/tc39/proposal-observable\" target=\"_blank\">proposition</a> existe pour normaliser les Observables, mais il s'agit toujours de l'étape 0 et n'a pas encore été présentée au TC39. Cependant, il est facilement implémentable par vous-même comme Pub/Sub.",
+       "text-2": "Une <a href=\"https://github.com/tc39/proposal-observable\" target=\"_blank\">proposition</a> existe pour standardiser les Observables, actuellement au stage 1 (Brouillon). Cependant, il est facilement implémentable par vous-même comme Pub/Sub.",
        "text-3": "C'est un des fondements de ReactiveX et de la programmation réactive."
      },
      "observable-2": {
@@ -501,7 +496,7 @@
      "why-prototype": {
        "title": "Pourquoi ça s'appelle « Prototype » ?",
        "list-1": "En industrie, un prototype est un <b>objet physique réel</b>, sur lequel seront basés des objets produits en série.",
-       "list-2": "Sur la même analogie, une <b>classe</b> s'apparenterait plutôt à un /b>plan ou schéma à respecter</b>, de nature plus abstraite et qui ne peut pas se manipuler comme un objet.",
+       "list-2": "Sur la même analogie, une <b>classe</b> s'apparenterait plutôt à un <b>plan ou schéma à respecter</b>, de nature plus abstraite et qui ne peut pas se manipuler comme un objet.",
        "list-3": "Un prototype est pris pour exemple pour créer les objets produits, tandis qu'un objet produit peut être pris comme exemple pour l'implémentation d'une classe.",
        "text": "Le choix de ce terme sert à illustrer ces différences."
      },
@@ -594,8 +589,8 @@
      },
      "static": {
        "title": "static",
-       "text-1": "Définit une méthode statique: c'est-à-dire une propriété du constructeur et non du prototype",
-       "text-2": "C'est fondamentalement la même chose que d'attribuer directement la propriété au constructeur, donc ce n'est pas le sucre syntaxique le plus utile, mais il a été ajouté pour sa familiarité avec les développeurs Java."
+       "text-1": "Définit une méthode statique: une propriété du constructeur et non du prototype",
+       "text-2": "C'est la même chose que d'attribuer directement la propriété au constructeur, donc pas l'opérateur le plus utile, mais il a été ajouté pour sa familiarité avec les développeurs Java."
      },
      "constructors-flaws-with-class": {
        "title": "Défauts des constructeurs, avec class",
@@ -615,7 +610,7 @@
        "text-1": "Vous n'avez pas besoin de constructeurs pour faire de la POO basée sur des prototypes. Vous pouvez plutôt utiliser :",
        "list-1": "les fonctions usines",
        "list-2": "<code>Object.create</code> et <code>Object.assign</code>",
-       "text-2": "Il corrige tous les défauts indiqués précédemment, et vous n'en avez plus besoin :"
+       "text-2": "Il corrige tous les défauts indiqués précédemment, et vous n'aurez plus besoin de :"
      },
      "class-vs-Object.create-example": {
        "title": "class vs Object.create: exemple"
@@ -702,7 +697,7 @@
        "title": "Reflect API",
        "text-1": "<b>Reflect</b> représente la capacité de <a href=\"https://en.wikipedia.org/wiki/Reflective_programming\" target=\"_blank\">réflexion</a> acquise par JS avec l'introduction des proxys.",
        "text-2": "L'objet <code>Reflect</code> contient un ensemble de méthodes qui reproduisent le comportement par défaut du langage pour tous les traps Proxy. Vous pouvez le voir comme la valeur par défaut de chaque trap <code>Proxy</code>.",
-       "text-3": "Vous pouvez facilement casser des comportements existants dont vous ignoriez même l'existence lorsque vous jouez avec des proxys. Une bonne pratique et une mesure de sécurité consiste à toujours appeler l'API Reflect lors de l'ajout d'une interruption de proxy."
+       "text-3": "Vous pouvez facilement casser des comportements existants dont vous ignoriez l'existence lorsque vous jouez avec des proxys. Il est recommandé de toujours commencer par appeler l'API Reflect lors de l'ajout d'un trap proxy."
      },
      "use-cases-for-proxies": {
        "title": "Cas d'utilisation des Proxy",
@@ -821,7 +816,7 @@
      },
      "chapter-7": {
        "title": "Au delà de JavaScript",
-       "description": "Transpilateurs et sur-ensembles JavaScript"
+       "description": "Transpilateurs et surcouches de JavaScript"
      },
      "babel-transpiler": {
        "title": "Transpilateur Babel",
@@ -845,7 +840,7 @@
        "list-2": "Utiliser preset-env pour réduire le scope de transpilation",
        "list-3": "Intégrer la transpilation aux autres process de build existants (linters, bundlers, minification…)",
        "list-4": "Utiliser les source maps avec son débogueur",
-       "text-4": "Heureusement, la plupart des outils de construction des frameworks sont préconfigurés comme ça !"
+       "text-4": "Heureusement, la plupart des outils de build des frameworks sont préconfigurés comme ça !"
      },
      "typescript": {
        "list-1": "TypeScript est un sur-ensemble de JavaScript développé par Microsoft et publié en 2012",
