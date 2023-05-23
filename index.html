@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JavaScript Training</title>
 	
-    <script type="module" crossorigin src="/JS-Training-slides/assets/index.2930a7f1.js"></script>
+    <script type="module" crossorigin src="/JS-Training-slides/assets/index.3b5b1a48.js"></script>
     <link rel="stylesheet" href="/JS-Training-slides/assets/index.e91e037d.css">
   <link rel="manifest" href="/JS-Training-slides/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/JS-Training-slides/registerSW.js"></script></head>
   <body>
@@ -283,7 +283,7 @@
 					</section>
 					<section id="ecmascript-versions">
 						<h3 data-i18n="title">Versions of ECMAScript</h3>
-						<img src="/JS-Training-slides/assets/ecmascript-versions.6aaebc37.png" height="150px">
+						<img src="/JS-Training-slides/assets/ecmascript-versions.7ffd91b5.svg" height="150px">
 						<p data-i18n="text-1">
 							A long delay between initial draft and release implies many browser-specific implementations.
 						</p>
@@ -1184,7 +1184,22 @@
 							Named exports are recommended over default exports because they are easier to resolve, autocomplete and refactor.
 						</div>
 					</section>
-					<section class="left" id="modules-3">
+					<section id="modules-3">
+						<h3 data-i18n="title">Modules: dynamic import </h3>
+						<p data-i18n="text">
+							When <code>import</code> is called as a function, the module is imported asynchronously. <br>
+							This is very useful for downloading code on demand (<i>lazy-loading</i>) and optimizing the loading time of your applications.
+						</p>
+						<pre><code class="javascript hljs" data-trim>
+						function loadMyModule(){
+							import('./myModule.mjs').then(module => {
+								const defaultExport = module.default
+								const { myNamedExport, myOtherExport } = module;
+							})
+						}
+						</code></pre>
+					</section>
+					<section class="left" id="modules-4">
 						<h3 data-i18n="title">Modules: strict mode and context</h3>
 						<p data-i18n="text-1">Modules have a different execution context to traditional scripts:</p>
 						<ul>
@@ -1217,21 +1232,6 @@
 							<a href="https://hacks.mozilla.org/2018/03/es-modules-a-cartoon-deep-dive/">https://hacks.mozilla.org/2018/03/es-modules-a-cartoon-deep-dive/</a>
 						</p>
 					</section>
-					<section id="modules-4">
-						<h3 data-i18n="title">Modules: dynamic import </h3>
-						<p data-i18n="text">
-							When <code>import</code> is called as a function, the module is imported asynchronously. <br>
-							This is very useful for downloading code on demand (<i>lazy-loading</i>) and optimizing the loading time of your applications.
-						</p>
-						<pre><code class="javascript hljs" data-trim>
-						function loadMyModule(){
-							import('./myModule.mjs').then(module => {
-								const defaultExport = module.default
-								const { myNamedExport, myOtherExport } = module;
-							})
-						}
-						</code></pre>
-					</section>
 					<section id="modules-5">
 						<h3 data-i18n="title">Modules: what about support?</h3>
 						<p data-i18n="text-1"><a href="https://caniuse.com/es6-module" target="_blank">Good support</a> (~95%) in 2022: Chrome 61+, Edge 16+, Firefox 60+</p>
@@ -1239,37 +1239,21 @@
 						<img height="200" src="/JS-Training-slides/assets/Image19.cd31a4c9.png">
 						<p data-i18n="text-3">Bundlers are tools that precompile your code and reduce the browser's work by producing optimized JS bundles from a set of modules during a build step.</p>
 					</section>
-					<section id="modules-6">
-						<h3 data-i18n="title">Modules: script nomodule</h3>
-						<p data-i18n="text-1">
-							Browsers that do not support modules won't load <code>&lt;script type="module"></code>
-							<br>but they can load an alternative script with the <code>nomodule</code> attribute.
-						</p>
-						<pre><code class="html hljs" data-trim>
-							<!-- Browsers supporting ESM will load this file -->
-							&lt;script type="module" src="main.js"&gt;&lt;/script&gt;
-
-							<!-- Older browsers load this file -->
-							<!-- Browsers supporting ESM know they should NOT load it -->
-							&lt;script nomodule src="main-legacy.js"&gt;&lt;script&gt;
-						</code></pre>						
-						<p data-i18n="text-2">
-							Bundlers can take advantage of this attribute to produce <b>two bundles</b>:<br>
-							 a <span class="green">modern</span> bundle, and a <span class="blue">legacy</span> bundle with more transpiled code.</p>
-						<p data-i18n="text-3">The modern bundle will be lighter and more efficient, so that support for older browsers does not degrade performance for the modern browsers used by the majority of users.</p>						
-					</section>
-					<section class="left" id="modules-7">
+					<section class="left" id="modules-6">
 						<h3 data-i18n="title">Modules : recommandations</h3>
-						<p data-i18n="text-1">Always use ESM modules and avoid other existing module systems</p>
-						<p data-i18n="text-2">Use a bundler that produce a nomodule legacy script if you need to support older browsers</p>						
-						
-						<p data-i18n="text-3">Popular bundlers:</p>
 						<ul>
-							<li data-i18n="list-1">Parcel: for simplicity and speed of implementation</li>
+							<li data-i18n="text-1">Always use ESM modules and avoid other existing module systems</li>
+							<li data-i18n="text-2">Use a bundler that produce an optimized bundle for production</li>
+							<li data-i18n="text-3">Use dynamic import to lazy load modules that are not necessary for main page content</li>
+						</ul>
+						
+						<p data-i18n="text-4" style="text-decoration: underline;">Popular bundlers:</p>
+						<ul>
+							<li data-i18n="list-1">Vite: for simplicity and speed</li>
 							<li data-i18n="list-2">Webpack: for complex web applications with advanced needs</li>
 							<li data-i18n="list-3">Rollup: for JS libraries</li>
 						</ul>
-						<img height="100" src="/JS-Training-slides/assets/Image22.95473710.png" alt="" style="float: right">
+						<img height="100" src="/JS-Training-slides/assets/Image22.b6bd7756.png" alt="" style="float: right">
 					</section>
 				</section>
 				<section>
@@ -1317,7 +1301,7 @@
 						<p data-i18n="text-4">It is composed of at least two functions: <b>subscription</b> and <b>emission</b></p>
 						<p data-i18n="text-5">Example of a pub/sub API:</p>
 						<pre><code class="javascript hljs" data-trim>
-							const publisher = new PubSub();
+							const publisher = createPubSub();
 
 							publisher.on("alert", function onAlert(eventData){
 								console.log(eventData)
@@ -1519,7 +1503,7 @@ async function myFunction() {
 						<div class="center">
 							<img src="/JS-Training-slides/assets/observable-en.e7c4bad5.png" alt="Timeline of an observable" />
 						</div>
-						<p data-i18n="text-2">A <a href="https://github.com/tc39/proposal-observable" target="_blank">proposal</a> exist to standardize Observables, but it's still Stage 0 and has not been presented to TC39 yet. However, it's easily implementable by yourself like Pub/Sub.</p>
+						<p data-i18n="text-2">A <a href="https://github.com/tc39/proposal-observable" target="_blank">proposal</a> exist to standardize Observables, currently in Stage 1 (Draft). However, it's easily implementable by yourself like Pub/Sub.</p>
 						<p data-i18n="text-3">This is one of the foundations of ReactiveX and reactive programming.</p>
 					</section>
 
@@ -1950,7 +1934,7 @@ C.methodStatic() // methodStatic in C
 						</code></pre>
 						<p data-i18n="text-2">This is basically the same thing than directly assigning the property to the constructor, so not the most useful syntaxic sugar, but it was added for its familiarity for Java developers.</p>
 						<pre><code class="javascript hljs js" data-trim>
-							C.equivalentStatic = function(){ ... }
+							C.methodStatic = function(){ ... }
 						</code></pre>
 					</section>
 
@@ -2278,14 +2262,13 @@ for(let n of counter123) console.log(n);
 						<pre style="font-size: 60%"><code class="javascript hljs js" data-trim>
 const obj = { foo: "bar" }
 const proxy = new Proxy(obj, {
-	get(obj, prop){
-		console.log(`get ${prop} intercepted`)
-		return "intercepted!"
+	get(obj, prop){		
+		return `${prop} intercepted!`
 	}
 })
 
 proxy.foo;
-▸ get foo intercepted!
+▸ foo intercepted!
 
 obj.foo;
 ▸ bar
