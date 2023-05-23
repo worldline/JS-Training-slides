@@ -1315,7 +1315,7 @@
 						<p data-i18n="text-4">It is composed of at least two functions: <b>subscription</b> and <b>emission</b></p>
 						<p data-i18n="text-5">Example of a pub/sub API:</p>
 						<pre><code class="javascript hljs" data-trim>
-							const publisher = new PubSub();
+							const publisher = createPubSub();
 
 							publisher.on("alert", function onAlert(eventData){
 								console.log(eventData)
