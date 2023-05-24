@@ -2361,7 +2361,7 @@ new Proxy(obj, {
 
 							const flatten = ([x, ...xs]) => x === undefined 
 								? []
-								: [ ...(Array.isArray(x) ? flatten(x) : x), ...flatten(xs) ]
+								: [ ...(Array.isArray(x) ? flatten(x) : [x]), ...flatten(xs) ]
 						</code></pre>
 						<div class="note" data-i18n="note">
 							A useful pattern but not the most readable and with the risk of an infinite loop. <br>
