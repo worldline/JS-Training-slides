@@ -63,13 +63,13 @@
      },
      "ecmascript": {
        "list-1": "<b>ECMA International</b> est une organisation créant des standards pour les technologies",
-       "list-2": "<b>ECMAScript</b> est le nom de la spécification référencée ECMA-262 et décrivant un langage de script polyvalent",
-       "list-3": "<b>TC39</b> est le nom du comité technique décidant des évolutions de la spécification ECMAScript. Il est composé de délégués de <b>grandes entreprises</b> (dont tous les vendeurs navigateur) et d'<b>experts invités</b>.",
+       "list-2": "<b>ECMAScript</b> (ou ECMA-262) est le nom de la spécification décrivant un langage de script polyvalent",
+       "list-3": "<b>TC39</b> est le comité technique décidant des évolutions de la spécification ECMAScript. Il est composé de délégués de <b>grandes entreprises</b> (dont tous les vendeurs navigateur) et d'<b>experts invités</b>.",
        "list-4": "<b>JavaScript</b> est un langage de script polyvalent et l'implémentation la plus populaire de ECMAScript <em>(autre implémentation populaire: ActionScript)</em>"
      },
      "javascript-evolutions": {
        "title": "Evolutions de JavaScript",
-       "text-1": "Le TC39 étudie les propositions d'évolutions de ECMAScript. Chaque proposition passe par 5 étapes:",
+       "text-1": "Le TC39 étudie les propositions d'évolutions de ECMAScript. Ces propositions peuvent venir de n'importe où du moment que vous ayez un champion au TC39 pour la défendre.<br/>Chaque proposition passe par 5 étapes:",
        "list-1": "0: <b>Strawman</b> - suggestion d'un besoin, appel à idées",
        "list-2": "1: <b>Proposal</b> - ébauche de solution, premiers polyfills/démos",
        "list-3": "2: <b>Draft</b> - décrit précisément la syntaxe/API",
@@ -127,13 +127,13 @@
      "properties-assignment": {
        "title": "Objets: parcours des propriétés",
        "exo": "Exercice 3",
-       "note": "<b class=\"monospace\">Object.assign</b> est très utile pour assigner un ensemble de propriétés en une seule instruction"
+       "note": "<b class=\"monospace\">Object.assign</b> est utile pour assigner un ensemble de propriétés en une seule instruction"
      },
      "property-descriptors": {
        "title": "Descripteurs de propriétés",
        "text-1" :"Chaque propriété contient en plus de sa valeur, une liste de paramètres intrinsèques appelés <b>descripteurs</b>:",
        "list-1": "la valeur de la propriété",
-       "list-2": "si la propriété est retournée par Object.keys ou for..in",
+       "list-2": "si la propriété est retournée par Object.keys() ou for..in",
        "list-3": "si la valeur de la propriété peut être modifiée",
        "list-4": "si le descripteur peut être modifié",
        "list-5": "fonction optionnelle à utiliser comme accesseur (getter)",
@@ -333,17 +333,18 @@
      },
      "modules-3": {
       "title": "Modules: import dynamique",
-      "text": "Quand <code>import</code> est appelé comme une fonction, le module est importé de façon asynchrone. <br>C'est très utile pour télécharger du code à la demande (lazy-loading) et optimiser le temps de chargement de vos applications."
+      "text": "Quand <code>import</code> est appelé comme une fonction, le module est importé de façon asynchrone.",
+      "note": " Les imports dynamiques sont utiles pour télécharger du code à la demande (lazy-loading) et optimiser le temps de chargement de vos applications."
     },
      "modules-4": {
        "title": "Modules: mode strict et contexte",
-       "text-1": "Les modules ont un contexte d'exécution différent des scripts classiques:",
+       "text-1": "Le code des modules s'exécute dans un contexte plus strict que les scripts classiques:",
        "list-1": "mode strict utilisé par défaut <code>(\"use strict\";)</code>",
        "list-2": "exceptions explicites sur certaines erreurs silencieuses",
        "list-3": "de nouveaux mots-clés sont réservés comme noms de variables",
        "list-4": "interdit les variables non explicitement déclarées",
        "list-5": "pas de contexte global <code>(this === undefined dans le scope global)</code>",
-       "text-2": "Il faut donc parser différemment le code si c'est un module:",
+       "text-2": "Il faut donc interpréter différemment le code si c'est un module:",
        "list-6": "Sur navigateur",
        "list-7": "Sur Node.js: utiliser l'extension <code>.mjs</code> au lieu de <code>.js</code>, ou avoir <code>{ type: \"module\" }</code> dans package.json"
      },
@@ -613,15 +614,8 @@
        "text-2": "Il corrige tous les défauts indiqués précédemment, et vous n'aurez plus besoin de :"
      },
      "class-vs-Object.create-example": {
-       "title": "class vs Object.create: exemple"
-     },
-     "delegation-pattern": {
-       "title": "Pattern délégation, en résumé",
-       "list-1": "Modèle plus léger et plus simple",
-       "list-2": "Remplacer la notion de constructeurs par des fonctions d'usine ou des méthodes d'initialisation",
-       "list-3": "Plus besoin des opérateurs <code>new</code> et <code>instanceof</code>",
-       "list-4": "Nécessite de sortir du modèle mental des hiérarchies de classes",
-       "note": "<u>Recommandé</u>:<br>Utilisez avec modération <code>Object.create</code> et </code>class extends</code>. <br>Limitez au maximum la taille de vos chaînes de prototypes.<br>La délégation par prototypes est un pattern flexible et puissant, mais la <b>composition d'objets</b> est une autre approche sous-exploitée"
+       "title": "class vs Object.create: exemple",
+       "note": "Quelle que soit votre préférence, utilisez avec modération <code>Object.create</code> et </code>class extends</code>.<br>Limitez au maximum la taille de vos chaînes de prototypes.<br>La délégation par prototype est un pattern flexible et puissant, mais la <b>composition d'objets</b> est une autre approche sous-exploitée"
      },
      "object-composition": {
        "title": "Composition d'objets (Mixins)",
@@ -683,14 +677,14 @@
        "text-3": "L'itération est terminée à la fin des instructions de fonction ou lors de la rencontre d'une instruction <code>return</code>."
      },
      "proxy": {
-       "title": "Proxy",
-       "text-1": "Les proxys, introduits dans ES2015, permettent d'intercepter et de personnaliser toutes les opérations effectuées sur un objet :",
+       "title": "Proxy (ES2015)",
+       "text-1": "Les proxies permettent d'intercepter toutes les opérations effectuées sur un objet :",
        "list-1": "énumération et description des propriétés",
        "list-2": "définition, assignation et suppression de propriétés",
        "list-3": "invocations de fonctions et de constructeurs",
        "list-4": "assignation et récupération du prototype",
        "list-5": "...",
-       "text-2": "Un <code>proxy</code> ne change pas l'objet d'origine: il renvoie un nouvel objet, le proxy.",
+       "text-2": "Un <code>proxy</code> ne change pas l'objet d'origine: c'est un nouvel objet avec sa propre référence.",
        "text-3": "Par défaut, aucune opération n'est interceptée, donc le proxy ne peut pas être distingué de l'objet d'origine."
      },
      "reflect-api": {
@@ -717,7 +711,7 @@
      "general-principles-functional-programming": {
        "title": "Principes généraux de la programmation fonctionnelle",
        "list-1": "Décomposer un problème en fonctions <b>atomiques</b>, <b>génériques</b> et <b>composables</b>",
-       "list-2": "Privilégier les fonctions <b>pures</b>, c'est-à-dire n'utilisant pas de variables libres et n'ayant pas d'effets de bord",
+       "list-2": "Privilégier les fonctions <b>pures</b>, c-à-d. n'utilisant pas de variables libres et n'ayant pas d'effets de bord",
        "list-3": "Eviter les mutations d'objets",
        "text": "Objectifs :",
        "list-4": "avoir un code plus prévisible",
@@ -767,7 +761,14 @@
      "functional-refactoring-in-practice": {
        "title": "Refactoring fonctionnel en pratique",
        "text-1": "Comment refactoriser un code pour obtenir des fonctions pures, atomiques, génériques et composables ?",
-       "text-2": "Partons de cet exemple de code:"
+       "text-2": "Partons de cet exemple de code:",
+       "text": "Pour refactoriser un code et obtenir des fonctions purement atomiques génériques et composables :",
+       "list-1": "Remplacer les variables libres par des arguments ou valeurs retournées",
+       "list-2": "Extraire et isoler les effets de bord / mutations du corps des fonctions",
+       "list-3": "Composer en séries de fonctions pures",
+       "list-4": "Extraire les valeurs arbitraires en arguments pour gagner en généricité",
+       "list-5": "Curryfier les fonctions pour réduire leur nombre d'arguments et simplifier le code",
+       "list-6": "Revenir sur chaque fonction pure, atomique, générique et composable obtenue pour établir si sa place est justifiée dans ce fichier ou si elle doit être externalisée"
      },
      "functional-refactoring-in-practice-2": {
        "title": "Refactoring fonctionnel en pratique",
@@ -801,18 +802,7 @@
      },
      "functional-refactoring-in-practice-8": {
        "title": "Refactoring fonctionnel en pratique",
-       "note": "ce que nous obtenons à la fin : fonctions pures, atomiques, génériques et composables"
-     },
-     "functional-refactoring-in-practice-9": {
-       "title": "Refactoring fonctionnel en pratique",
-       "text": "Pour refactoriser un code et obtenir des fonctions purement atomiques génériques et composables :",
-       "list-1": "<i class=\"grey\">Collecte des ingrédients</i><br> Remplacer les variables libres par des arguments ou valeurs retournées",
-       "list-2": "<i class=\"grey\">Découpe</i><br> Extraire et isoler les effets de bord / mutations du corps des fonctions",
-       "list-3": "<i class=\"grey\">Mélanger le tout</i><br> Composer en séries de fonctions pures",
-       "list-4": "<i class=\"grey\">Laisser mijoter</i><br> Extraire les valeurs arbitraires en arguments pour gagner en généricité",
-       "list-5": "<i class=\"grey\">Ajouter les épices</i><br> Curryfier les fonctions pour réduire leur nombre d'arguments et simplifier le code",
-       "list-6": "<i class=\"grey\">Dresser l'assiette</i><br> Revenir sur chaque fonction pure, atomique, générique et composable obtenue pour établir si sa place est justifiée dans ce fichier ou si elle doit être externalisée",
-       "note": "Avec le temps, vous pourrez vous composer une <b>functional toolbox</b>, votre livre de recettes réutilisables dans vos différents projets"
+       "note": "Avec le temps, vous pourrez vous composer une <b>boîte à outils fonctionnelle</b>, votre livre de recettes réutilisables dans vos différents projets"
      },
      "chapter-7": {
        "title": "Au delà de JavaScript",
@@ -820,16 +810,14 @@
      },
      "babel-transpiler": {
        "title": "Transpilateur Babel",
-       "list-1": "<b>Transpilateur</b> = compilateur source à source opérant sur le même langage, ou deux langages avec le même niveau d'abstraction",
-       "list-2": "Babel est le transpileur JS le plus populaire. Il s'appelait initialement 6to5 car il convertissait ES6 en ES5 pour obtenir une prise en charge plus large des navigateurs (Internet Explorer en particulier)",
-       "list-3": "Exemple de ES2021 → ES5 transpilation",
-       "list-4": "Un plugin Babel existe pour presque chaque proposition TC39, pour expérimenter de nouvelles propositions",
-       "list-5": "Des préréglages de plugins Babel existent pour chaque version majeure d'ECMAScript"
+       "list-1": "<b>Transpilateur</b> = compilateur source à source opérant sur le même niveau d'abstraction",
+       "list-2": "Les transpilateurs JavaScript servent à réécrire du code JavaScript en une syntaxe plus ancienne de façon à élargir le support navigateur. <b>Babel</b> et <b>esbuild</b> sont deux transpilateurs JS populaires.",
+       "list-3": "Exemple de transpilation ES2021 → ES5",
+       "list-4": "Aujourd'hui, les transpilateurs servent aussi à expérimenter les nouvelles propositions du TC39"
      },
-     "babel-preset-env": {
-       "list-1": "Depuis qu'<a href=\"https://blogs.windows.com/windowsexperience/2022/06/15/internet-explorer-11-has-retired-and-is-officially-out-of-support-what-you-need-to-know\" target=\"_blank\">Internet Explorer</a> a pris sa retraite et n'est plus pris en charge par Microsoft, nous sommes entrés dans l'ère toujours verte des navigateurs Web, qui rendent la plupart des transformations Babel inutiles.",
-       "list-2": "Un nouveau préréglage Babel a été créé pour réduire le nombre de transformations Babel à ce dont vous avez besoin en fonction de la <a href=\"https://browserslist.dev\" target=\"_blank\">liste des navigateurs que vous souhaitez supporter</a>.",
-       "text": "Exemples de requêtes de listes de navigateurs :"
+     "browserslist": {
+       "text-1": "Vous pouvez configurer un environnement cible pour votre application avec browserslist. Cela déterminera les transformations nécessaires à faire par votre transpilateur.",
+       "text-2": "Exemples de requêtes de listes de navigateurs :"
      },
      "transpile-or-not-transpile": {
        "title": "Transpiler ou pas transpiler ?",
@@ -844,12 +832,12 @@
      },
      "typescript": {
        "list-1": "TypeScript est un sur-ensemble de JavaScript développé par Microsoft et publié en 2012",
-       "list-2": "Il a un transpileur officiel, <a href=\"https://www.typescriptlang.org/docs/handbook/compiler-options.html\" target=\"_blank\">tsc</a>, mais de nombreux autres transpileurs alternatifs existent : <a href=\"https://esbuild.github.io\" target=\"_blank\">esbuild</a>, <a href=\"https://bun.sh\" target=\"_blank\">bun</a>, et même un préréglage Babel.",
+       "list-2": "Il a un transpilateur officiel, <a href=\"https://www.typescriptlang.org/docs/handbook/compiler-options.html\" target=\"_blank\">tsc</a>, mais aujourd'hui la majorité des transpilateurs le supportent nativement. Les environnements JS modernes tels que <a href='https://bun.sh/' target='_blank'>Bun</a> ou <a href='https://nodejs.org/' target='_blank'>NodeJS >= 23</a> savent directement interpréter le code TypeScript.",
        "list-3": "La fonctionnalité clé de TypeScript est le typage statique optionnel",
        "list-4": "Autres fonctionnalités intéressantes : interfaces, décorateurs, énumérations, classes abstraites",
        "list-5": "Adoptable progressivement: avec les définitions de type (fichiers <code>*.d.ts</code>), TypeScript peut détecter les erreurs même sans aucune syntaxe spécifique à TS.",
        "list-6": "Essayez-le en ligne <a href=\"https://www.typescriptlang.org/play\" target=\"_blank\">ici</a>",
-       "note": "En 10 ans, la popularité de TypeScript n'a cessé de croître. En 2022, c'est une partie majeure de l'écosystème front-end. Il est pris en charge dans tous les principaux frameworks Web et améliore à la fois l'expérience du développeur et la fiabilité du code, en particulier pour les applications de taille moyenne à grande."
+       "note": "De 2012 à 2025, la popularité de TypeScript n'a cessé de croître. En 2025, c'est une partie majeure de l'écosystème front-end. Il est pris en charge dans tous les principaux frameworks Web et améliore à la fois l'expérience du développeur et la fiabilité du code, en particulier pour les applications de taille moyenne à grande."
      },
      "jsx": {
        "list-1": "JSX est un autre sur-ensemble de JavaScript développé par Facebook, à l'origine pour le framework <b>React</b>",
