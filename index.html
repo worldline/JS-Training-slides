@@ -137,15 +137,16 @@
 						<h3 data-i18n="title">String Methods</h3>
 						<pre style="font-size: 80%"><code class="javascript hljs" data-trim data-line-numbers>
 							"str".charAt(1) === "str"[1] === "t"
-							"a".concat("b") === "a" + "b" === "ab"
+							"ab".concat("cd") === "ab" + "cd" === "abcd"
 							"str".startsWith("s") === true
 							"str".endsWith("r") === true
 							"str".includes("st") === true
-							"toto".indexOf("t") === 0
-							"toto".lastIndexOf("t") === 2
+							"str".indexOf("t") === 1
+							"toaster".lastIndexOf("t") === 4
 							"str".search(/t/) === 1
 							"str1".match(/r(\d)/) => ["r1", "1"]
 							"Hi Bob".replace(/Hi (\w+)/, "Hello $1") => "Hello Bob"
+							"str".repeat(3) === "strstrstr"
 							"string".slice(0,3) === "str"
 							"1,2,3".split(",") => ["1","2","3"]
 							"STR".toLowerCase() === "str"
@@ -155,14 +156,14 @@
 					</section>
 					<section id="array-methods">
 						<h3 data-i18n="title">Array Methods</h3>
-						<pre style="font-size: 50%"><code class="javascript hljs" data-trim data-line-numbers>
+						<pre style="font-size: 80%"><code class="javascript hljs" data-trim data-line-numbers>
 							[1,2].concat([3,4], 5, 6) // [1,2,3,4,5,6]
 							[1,2,3].fill(4) // [4,4,4]
 							[1,2,3].includes(2) // true
 							[1,2,3].indexOf(2) // 1
 							[1,2,3].join("-") // "1-2-3"
 							[1,2,3,4].slice(1,3) // [2,3]
-							
+							[4,5,6,7].copyWithin(0,2,3) // [6,7,6,7]
 							[1,2,3,4].every((value, index, arr) => n > 2) // false
 							[1,2,3,4].some((value, index, arr) => n > 2) // true
 							[1,2,3,4].find((value, index, arr) => n > 2) // 3
@@ -170,10 +171,15 @@
 							[1,2,3,4].filter((value, index, arr) => n > 2) // [3,4]
 							[1,2,3,4].forEach((value, index, arr) => { ... })
 							[1,2,3,4].map((val, index, arr) => val * 2) // [2,4,6,8]
+							[[1,2],[3,4]].flatMap((val, index, arr) => val * 2) // [2,4,6,8]
 							[1,2,3,4].reduce((accu, n) => accu + n, "test") // "test1234"
 							[1,2,3,4].reduceRight((accu, n) => accu + n, "test") // "test4321"
-							
-							// /!\ Mutative methods, original array is modified!
+						</code></pre>
+					</section>
+					<section>
+						<h3 data-i18n="title">Array Methods</h3>
+						<p class="important">⚠️ Mutative methods, original array is modified!</p>
+						<pre style="font-size: 70%"><code class="javascript hljs" data-trim data-line-numbers>						
 							let arr = [3,2,1]
 							arr.push(4,5) // returns new array.length (5), a = [3,2,1,4,5]
 							arr.pop() // returns last item (5), a = [3,2,1,4]
@@ -183,42 +189,75 @@
 							arr.sort((a,b) => a-b) // [1,4,5,7,8]
 							arr.reverse() // [8,7,5,4,1]
 						</code></pre>
+						
+						<p>Non-mutative equivalents</p>
+						<pre style="font-size: 80%"><code class="javascript hljs" data-trim data-line-numbers>
+							[1,2,3,4].with(2,5) // [1,2,5,4]
+							[1,2,3,4].toSpliced(1,2,7,8) // [1,7,8,4]
+							[4,1,3,2].toSorted((a,b) => a-b) // [1,2,3,4]
+							[1,2,3,4].toReversed() // [4,3,2,1]
+						</code></pre>
+					</section>
+					<section>
+						<h3 data-i18n="title">Array Methods</h3>
+						<p>Constructor</p>
+						<pre style="font-size: 100%"><code class="javascript hljs" data-trim data-line-numbers>						
+							new Array(3); // [undefined, undefined, undefined]
+							new Array(3).fill(0); // [0, 0, 0]
+							new Array(1,2,3) // [1,2,3]
+						</code></pre>
+						<p>Static methods</p>
+						<pre style="font-size: 100%"><code class="javascript hljs" data-trim data-line-numbers>						
+							Array.of(1, 2, 3); // [1, 2, 3]
+							Array.isArray([1, 2, 3]); // true
+							Array.isArray({ length: 3 }); // false
+							Array.from("abc"); // ["a", "b", "c"]
+							Array.from({ length: 3 }, (v, i) => i); // [0, 1, 2]
+						</code></pre>
 					</section>
 					<section>
 						<h3>Map</h3>
 						<pre style="font-size: 80%"><code class="javascript hljs" data-trim data-line-numbers>
 							let map = new Map([ ['key1', 'val1'], ['key2', 'val2'] ])
-							let key = {}, value = {} // any type
+							// keys and values can be of any type
 							
+							map.size === 2
 							map.set(key, value)
 							map.get(key) === value
 							map.has(key) === true
 							map.delete(key);
-							map.size === 2
+							map.clear() // remove all
 							
-							let keys = [...map.keys()]
-							let values = [...map.values()]
+							let keys = [...map.keys()] // ['key1', 'key2']
+							let values = [...map.values()] // ['val1', 'val2']
 							let fusionMap = new Map([...map1, ...map2])
-							
+
 							for(let [key, val] of map){ }
 							map.forEach((val, key, map) => { })
 						</code></pre>
 					</section>
 					<section>
 						<h3>Set</h3>
-						<pre><code class="javascript hljs" data-trim data-line-numbers>
-							let mySet = new Set([ 1,2,3,4 ])
-								▸ Set(4) {1, 2, 3, 4}
+						<pre style="font-size: 70%"><code class="javascript hljs" data-trim data-line-numbers>
+							let mySet = new Set([ 1,2,1,3,2,4 ]) // Set(4) {1, 2, 3, 4}
 
 							mySet.add("any type")
-							map.has(3) === true
-							map.delete(3);
-							map.size === 4;
-							map.clear(); // remove all
+							mySet.has(3) === true
+							mySet.delete(3);
+							mySet.size === 4;
+							mySet.clear(); // remove all
 							 
 							for(let item of mySet){ }
 							mySet.forEach(item => { })
-							let items = [...mySet];
+							let items = [...mySet]; // [1,2,3,4]
+
+							mySet.union(new Set([3,4,5])) // Set(5) {1, 2, 3, 4, 5}
+							mySet.intersection(new Set([3,4,5])) // Set(2) {3, 4}							
+							mySet.difference(new Set([3,4,5])) // Set(2) {1, 2}
+							mySet.symmetricDifference(new Set([3,4,5])) // Set(3) {1, 2, 5}
+							mySet.isSubsetOf(new Set([1,2,3,4,5])) // true
+							mySet.isSupersetOf(new Set([2,3])) // true
+							mySet.isDisjointFrom(new Set([5,6,7])) // true
 						</code></pre>
 					</section>
 				</section>
@@ -237,11 +276,11 @@
 								<b>ECMA International</b> is an organisation that creates standards for technologies
 							</li>
 							<li data-i18n="list-2">
-								<b>ECMAScript</b> is the name of the specification referenced ECMA-262 and describing a general purpose scripting language
+								<b>ECMAScript</b> (a.k.a. ECMA-262) is the name of a specification describing a general purpose scripting language
 							</li>
 							<li data-i18n="list-3">
-								<b>TC39</b> is the name of the technical committee that decides on developments in the ECMAScript specification. 
-								It is composed of delegates from <b>major companies</b> (including all browser providers) and <b>invited experts.</b>
+								<b>TC39</b> is the technical committee that decides on developments in the ECMAScript specification. 
+								It is composed of delegates from major companies, browser providers, and invited experts.
 							</li>
 							<li data-i18n="list-4">
 								<b>JavaScript</b> is a versatile scripting language and the most popular implementation of ECMAScript<br>
@@ -252,7 +291,7 @@
 					<section id="javascript-evolutions" style="text-align: left;">
 						<h3 data-i18n="title">JavaScript Evolutions</h3>
 						<p data-i18n="text-1">
-							TC39 is considering proposals for ECMAScript developments. Each proposal goes through 5 stages:
+							TC39 is considering proposals for ECMAScript developments. Proposals can come from anywhere as long as you find a champion in TC39 to defend it.<br/>Each proposal goes through 5 stages:
 						</p>
 						<ul>
 							<li data-i18n="list-1">0:
@@ -431,7 +470,7 @@
 								▸ {a: 1, b: 2}
 						</code></pre>
 						<aside class="note info" data-i18n="note">
-							<b class="monospace">Object.assign</b> is very useful for assigning default values 
+							<b class="monospace">Object.assign</b> is useful for assigning default values 
 							or assigning a set of properties in a single statement
 						</aside>
 					</section>
@@ -440,7 +479,7 @@
 						<p data-i18n="text-1">Each property contains in addition to its value, a list of intrinsic parameters called <b>descriptors</b>:</p>
 						<ul>
 							<li><b class="monospace">value:</b> <em data-i18n="list-1">the value of the property</em></li>
-							<li><b class="monospace">enumerable: true</b> <em data-i18n="list-2">if the property is listed with Object.keys or for..in</em></li>
+							<li><b class="monospace">enumerable: true</b> <em data-i18n="list-2">if the property is listed with Object.keys() or for..in</em></li>
 							<li><b class="monospace">writable: true</b> <em data-i18n="list-3">if the value of the property can be modified</em></li>
 							<li><b class="monospace">configurable: true</b>: <em data-i18n="list-4">if the descriptor can be modified</em></li>
 							<li><b class="monospace">get</b>: <em data-i18n="list-5">optional function to use as getter</em></li>
@@ -852,40 +891,38 @@
 
 					<section id="syntactic-key-value">
 						<h3 data-i18n="title">Syntactic sugar: key and value</h3>
-						<pre><code class="javascript hljs" data-trim>
-							let foo = "foo", bar = "bar"
+						<pre style="font-size: 90%"><code class="javascript hljs" data-trim>
+							let foo = 1, bar = 2
 
 							const obj = { foo, bar } // equivalent to { foo: foo, bar: bar }
 
 							obj
-							▸ {foo: "foo", bar: "bar"}
+							▸ {foo: 1, bar: 2}
 						</code></pre>
 					</section>
 
 					<section id="syntactic-calculated-keys">
 						<h3 data-i18n="title">Syntactic sugar: calculated keys</h3>
 						<pre><code class="javascript hljs" data-trim>
-							let foo = "foo", bar = "bar"
+							let prop = "foo"
 
 							const obj = {
-								[foo]: [bar],
-								[foo+bar]: foo+bar
+								[prop]: "bar",
+								[prop + "bar"]: "foobar"
 							} 
 							
 							/* equivalent to
-							obj[foo] = [bar]
-							obj[foo+bar] = foo + bar
+							obj[prop] = "bar"
+							obj[prop + "bar"] = "foobar"
 							*/
 						</code></pre>
 						<pre><code class="javascript hljs" data-trim>
 							obj
-							▾ {foo: Array(1), foobar: "foobar"}
-								▸ foo: ["bar"]
-									foobar: "foobar"
+							▾ {foo: "bar", foobar: "foobar"}
 						</code></pre>
 					</section>
 
-					<section class="left" id="arrow-functions">
+					<section id="arrow-functions">
 						<h3 data-i18n="title">Arrow functions</h3>
 						<span class="ref" data-i18n="exo">Exercise 7</span>
 						<pre><code class="javascript hljs" data-trim>
@@ -894,7 +931,7 @@
 										f3 = (a,b,c) => { return a+b+c }
 						</code></pre>
 						<p data-i18n="text-1">Functions declared with this shortened syntax have specific features:</p>
-						<ul>
+						<ul class="left">
 							<li data-i18n="list-1">Has no execution context <br>
 							<span class="grey">(the value of <span class="monospace">this</span> is looked up in the parent scope)</span></li>
 							<li data-i18n="list-2">Cannot be called as a constructor (with operator <code style="color: orange">new</code>)</li>
@@ -928,7 +965,7 @@
 							<li data-i18n="list-1">Can be expressions using other arguments or variables in the scope.</li>
 							<li data-i18n="list-2">If the default value is an expression, it will only be executed if necessary</li>
 						</ul>
-						<pre style="font-size: 80%"><code class="javascript hljs" data-trim>
+						<pre style="font-size: 70%"><code class="javascript hljs" data-trim>
 							function doSomething(data, config = retrieveDefaultConfig(data)) {
 								// retrieveDefaultConfig will be called only if config is undefined
 							}
@@ -936,6 +973,8 @@
 							const required = name => throw new Error("Missing required parameter: "+ name)
 
 							const findUsersByRole = (role = required('role')) => { }
+
+							findUsersByRole() // Error: Missing required parameter: role
 						</code></pre>
 					</section>
 
@@ -1038,7 +1077,7 @@
 					<section class="left" id="object-argument-pattern">
 						<h3 data-i18n="title">Parameterized object argument pattern</h3>
 						<p data-i18n="text-1">Instead of passing several arguments to functions, a popular pattern is to pass an object as single argument with the different parameters as properties:</p>
-						<pre><code class="javascript hljs" data-trim>
+						<pre style="font-size: 80%"><code class="javascript hljs" data-trim>
 							const searchProducts = ({
 								minPrice = 0,
 								maxPrice = 1000,
@@ -1140,11 +1179,11 @@
 						<ul>
 							<li>
 								<span data-i18n="list-1">CommonJS (used by Node.js)</span>
-								<pre><code class="javascript hljs" data-trim>const $ = require('jquery')</code></pre>
+								<pre class="obsolete"><code class="javascript hljs" data-trim>const $ = require('jquery')</code></pre>
 							</li>
 							<li>
 								<span data-i18n="list-2">Asynchronous Module Definition (AMD)</span>
-								<pre><code class="javascript hljs" data-trim>
+								<pre class="obsolete"><code class="javascript hljs" data-trim>
 									define(['jquery', 'underscore'], function($,_){ 
 
 									});
@@ -1163,16 +1202,17 @@
 						<img height="350" src="./assets/img/Image14.png" style="float: right">
 						<p data-i18n="text-1">Two keywords: <code>import</code> and <code>export</code></p>
 						<p data-i18n="text-2">You can have <b>named</b> exports and <b>default</b> exports</p>
-						<pre><code class="javascript hljs" data-trim>
+						<pre style="font-size: 80%"><code class="javascript hljs" data-trim>
 							// default import
 							import MyModule from './my-module.js' 
 
 							// named imports
 							import { a, b as moduleB } from 'module' 
 
+							// mixed
 							import React, { Component } from 'react'
 						</code></pre>
-						<pre><code class="javascript hljs" data-trim>
+						<pre style="font-size: 80%"><code class="javascript hljs" data-trim>
 							/* in my-module.js */
 							export const a = "something"
 							export function b(){ ... }
@@ -1185,8 +1225,7 @@
 					<section id="modules-3">
 						<h3 data-i18n="title">Modules: dynamic import </h3>
 						<p data-i18n="text">
-							When <code>import</code> is called as a function, the module is imported asynchronously. <br>
-							This is very useful for downloading code on demand (<i>lazy-loading</i>) and optimizing the loading time of your applications.
+							When <code>import</code> is called as a function, the module is imported asynchronously.
 						</p>
 						<pre><code class="javascript hljs" data-trim>
 						function loadMyModule(){
@@ -1196,10 +1235,13 @@
 							})
 						}
 						</code></pre>
+						<div class="note info" data-i18n="note">
+							Dynamic imports are useful for downloading code on demand (<i>lazy-loading</i>) and optimizing the loading times.
+						</div>
 					</section>
 					<section class="left" id="modules-4">
 						<h3 data-i18n="title">Modules: strict mode and context</h3>
-						<p data-i18n="text-1">Modules have a different execution context to traditional scripts:</p>
+						<p data-i18n="text-1">Code running in a module uses a stricter execution context than traditional scripts:</p>
 						<ul>
 							<li>
 								<span data-i18n="list-1">strict mode used by default <code>("use strict";)</code></span>
@@ -1232,13 +1274,13 @@
 					</section>
 					<section id="modules-5">
 						<h3 data-i18n="title">Modules: what about support?</h3>
-						<p data-i18n="text-1"><a href="https://caniuse.com/es6-module" target="_blank">Good support</a> (~95%) in 2022: Chrome 61+, Edge 16+, Firefox 60+</p>
-						<p data-i18n="text-2">But developers use ESM widely in their codebases that are transformed into <b>bundles</b> by bundlers like Webpack, Parcel, Rollup, esbuild...</p>
+						<p data-i18n="text-1"><a href="https://caniuse.com/es6-module" target="_blank">Good support</a> (~98%) in 2025: Chrome 61+, Edge 16+, Firefox 60+</p>
+						<p data-i18n="text-2">But developers use ESM widely in their codebases that are transformed into <b>bundles</b> by bundlers like Vite, Rollup, esbuild, Webpack, Parcel...</p>
 						<img height="200" src="./assets/img/Image19.png">
 						<p data-i18n="text-3">Bundlers are tools that precompile your code and reduce the browser's work by producing optimized JS bundles from a set of modules during a build step.</p>
 					</section>
 					<section class="left" id="modules-6">
-						<h3 data-i18n="title">Modules : recommandations</h3>
+						<h3 data-i18n="title">Modules: recommendations</h3>
 						<ul>
 							<li data-i18n="text-1">Always use ESM modules and avoid other existing module systems</li>
 							<li data-i18n="text-2">Use a bundler that produce an optimized bundle for production</li>
@@ -1462,13 +1504,12 @@ f1()
 async function myFunction() {
 	try {
 		const result = await myPromise;
-		// my Promise is resolved and the the resolved value is assigned to result
+		// my Promise is resolved, the resolved value is assigned to result
 	} catch(err) {
 		// myPromise is rejected with error "err"
 	}
 
-	// this line is reached only after resolve/reject of myPromise
-	return result
+	// this line is reached only after all promises are resolved or rejected
 }</code></pre>
 					</section>
 
@@ -1629,7 +1670,7 @@ console.log(5)
 							<li data-i18n="list-3">You can retrieve the prototype of an object with:<br/><code>Object.getPrototypeOf(obj)</code></li>
 							<li data-i18n="list-4">You can reassign dynamically the prototype of an object with:<br/><code>Object.setPrototypeOf(obj, newProto)</code></li>
 						</ul>
-						<div class="note warning" data-i18n="note" style="display: block; margin-left: auto; margin-right: 0; width: 500px">
+						<div class="note warning" data-i18n="note">
 							Do not reassign the prototype in performance-critical parts of your application because it is tricky to optimize for JavaScript engines
 						</div>
 					</section>
@@ -1882,9 +1923,9 @@ class User extends Person {
 const bill = new User("Bill", "Gates", "admin")
 							</code></pre>
 							<div class="left">
-								<div class="arrow left fragment" data-i18n="note-1" style="top: 34px; right: 0px"><span>explicit <code>constructor</code> property</span></div>
-								<div class="arrow left fragment" data-i18n="note-2" style="top: 206px; right: -50px;">simplifies the assignation of the prototype</div>
-								<div class="arrow left fragment" data-i18n="note-3" style="top: 242px; right: -120px">simplifies the call to the prototype constructor</div>
+								<div class="arrow left fragment" data-i18n="note-1" style="top: 32px; right: -40px"><span>explicit <code>constructor</code> property</span></div>
+								<div class="arrow left fragment" data-i18n="note-2" style="top: 206px; right: -70px;">simplifies the assignation of the prototype</div>
+								<div class="arrow left fragment" data-i18n="note-3" style="top: 242px; right: -150px">simplifies the call to the prototype constructor</div>
 							</div>
 						</div>
 					</section>
@@ -1893,11 +1934,10 @@ const bill = new User("Bill", "Gates", "admin")
 						<h3 data-i18n="title">super</h3>
 						<pre><code class="javascript hljs js" data-trim>
 							super(...args); // call the prototype constructor
-
 							super.method(); // call a method of the prototype
 						</code></pre>
 						<p data-i18n="text">It is usable without the class operator:</p>
-						<pre style="font-size: 60%"><code class="javascript hljs js" data-trim>
+						<pre style="font-size: 70%"><code class="javascript hljs js" data-trim>
 							const user = {
 								name: "Anonymous",
 								getName(){ return this.name }
@@ -1906,7 +1946,9 @@ const bill = new User("Bill", "Gates", "admin")
 							const joe = {
 								name: "Joe",
 								getName(){
-									return `joe name: ${this.name} ; user name: ${super.name} : user getName: ${super.getName()}`
+									return `joe name: ${this.name} 
+									        user name: ${super.name} 
+										      user getName: ${super.getName()}`
 								}
 							}
 
@@ -2054,21 +2096,9 @@ b1.speak();
 b2.speak();
 							</code></pre>
 						</div>
-					</section>
-
-					<section id="delegation-pattern">
-						<h3 data-i18n="title">Delegation pattern, in short</h3>
-						<ul>
-							<li data-i18n="list-1">Lighter and simpler model</li>
-							<li data-i18n="list-2">Replace the notion of constructors by factory functions or initialization methods </li>
-							<li data-i18n="list-3">No longer needs <code>new</code> and <code>instanceof</code> operators</li>
-							<li data-i18n="list-4">Requires to get out of the mental model of class hierarchies</li>
-						</ul>
-						<div class="note left" data-i18n="note">
-							<u>Recommended:</u>
-							<p>Use <code>Object.create</code> and <code>class extends</code> with moderation</p>
-							<p>Limit the size of your prototype chains as much as possible</p>
-							<p>Delegation is a powerful and flexible pattern, but other approachs such as <b>object composition</b> are underused.</p>
+						<div class="note info" data-i18n="note">
+							<p>Whatever you prefer, use <code>Object.create</code> and <code>class extends</code> with moderation. Limit the size of your prototype chains as much as possible.
+								Delegation is a powerful and flexible pattern, but other approachs such as <b>object composition</b> are underused.</p>
 						</div>
 					</section>
 
@@ -2076,13 +2106,13 @@ b2.speak();
 						<h3 data-i18n="title">Object composition (a.k.a. Mixins)</h3>
 						<p data-i18n="text-1">Another pattern in JavaScript OOP consists of creating objects by composition.</p>
 						<p data-i18n="text-2">This pattern is super simple because JS objects support dynamic assignation of new properties:</p>
-						<pre style="font-size: 70%"><code class="javascript hljs js" data-trim>
+						<pre style="font-size: 90%"><code class="javascript hljs js" data-trim>
 							const mixin = { ...objA, ...objB }
 							// or
 							const mixin = Object.assign({}, objA, objB)
 						</code></pre>
 						<p data-i18n="text-3">The composition is ordered, applying arguments from left to right, so that in case of conflicts on one property name, the last one gets priority:</p>
-						<pre style="font-size: 70%"><code class="javascript hljs js" data-trim>
+						<pre style="font-size: 90%"><code class="javascript hljs js" data-trim>
 							let o = { ...{ x: 1 }, ...{ x: 2 }, ...{ x: 3 } }
 							o
 							▸ { x: 3 }
@@ -2246,9 +2276,9 @@ for(let n of counter123) console.log(n);
 					</section>
 
 					<section id="proxy">
-						<h3 data-i18n="title">Proxy</h3>
-						<p data-i18n="text-1">Proxies, introduced in ES2015, let you intercept and customize any operations made on an object:</p>
-						<ul class="narrow">
+						<h3 data-i18n="title">Proxy (ES2015)</h3>
+						<p data-i18n="text-1">Proxies let you intercept and customize any operations made on an object:</p>
+						<ul class="narrow left">
 							<li data-i18n="list-1">enumerate and describe its properties</li>
 							<li data-i18n="list-2">define, assign, or delete some properties</li>
 							<li data-i18n="list-3">invoke it as function or constructor</li>
@@ -2256,13 +2286,11 @@ for(let n of counter123) console.log(n);
 							<li data-i18n="list-5">...</li>
 						</ul>
 						<p data-i18n="text-2">A <code>Proxy</code> does not change the original object: it returns a new object, the proxy.</p>
-						<p data-i18n="text-3">By default, no operation is intercepted so the proxy is indistinguishable from the original object.</p>
-						<pre style="font-size: 60%"><code class="javascript hljs js" data-trim>
+						<p data-i18n="text-3" style="font-size: 90%">By default, no operation is intercepted so the proxy is indistinguishable from the original object.</p>
+						<pre style="font-size: 80%"><code class="javascript hljs js" data-trim>
 const obj = { foo: "bar" }
 const proxy = new Proxy(obj, {
-	get(obj, prop){		
-		return `${prop} intercepted!`
-	}
+	get(obj, prop){	return `${prop} intercepted!` }
 })
 
 proxy.foo;
@@ -2294,7 +2322,7 @@ new Proxy(object, {
 
 					<section id="reflect-api">
 						<h3 data-i18n="title">Reflect API</h3>
-						<p data-i18n="text-1"><b>Reflect</b> represents the capacity for <a href="https://en.wikipedia.org/wiki/Reflective_programming" target="_blank">reflection</a> acquired by JS with the introduction of proxies.</p>
+						<p data-i18n="text-1" style="font-size: 90%"><b>Reflect</b> represents the capacity for <a href="https://en.wikipedia.org/wiki/Reflective_programming" target="_blank">reflection</a> acquired by JS with the introduction of proxies.</p>
 						<p data-i18n="text-2">The <code>Reflect</code> object contains a set of methods that reproduce the default behavior of the language for all the Proxy traps. You can see it as the default value of every <code>Proxy</code> trap.</p>
 						<pre style="font-size: 70%"><code class="javascript hljs js" data-trim>
 							Reflect.get(o, key) ⇔ o[key]
@@ -2356,12 +2384,13 @@ new Proxy(obj, {
 					<section id="function-patterns-recursivity">
 						<h3 data-i18n="title">Function patterns: Recursivity</h3>
 						<p data-i18n="text">A <b>recursive</b> function invokes itself with other arguments until reaching a <b>stop condition</b>.</p>
-						<pre><code class="javascript hljs js" data-trim>
+						<pre style="font-size: 80%"><code class="javascript hljs js" data-trim>
 							const factorial = n => n &lt; 2 ? 1 : n * factorial(n-1)
 
-							const flatten = ([x, ...xs]) => x === undefined 
-								? []
-								: [ ...(Array.isArray(x) ? flatten(x) : [x]), ...flatten(xs) ]
+							const flatten = ([x, ...rest]) =>
+								 x === undefined ? []
+								 : Array.isArray(x) ? [...flatten(x), ...flatten(rest)]
+								 : [x, ...flatten(rest)]
 						</code></pre>
 						<div class="note" data-i18n="note">
 							A useful pattern but not the most readable and with the risk of an infinite loop. <br>
@@ -2461,6 +2490,27 @@ whereAgeIsOver18(data)
 					<section id="functional-refactoring-in-practice">
 						<h3 data-i18n="title">Functional refactoring in practice</h3>
 						<p data-i18n="text-1">How to refactor a code to obtain pure, atomic, generic and composable functions ?</p>
+						<img src="./assets/img/cook.png" style="float: right; height: 150px" />
+						<ol style="display: block">
+							<li data-i18n="list-1">
+								Replace non-local variables with new arguments or return values
+							</li>
+							<li data-i18n="list-2">
+								Extract and isolate side effects and mutations
+							</li>
+							<li data-i18n="list-3">
+								Compose into series of pure functions
+							</li>
+							<li data-i18n="list-4">
+								Extract arbitrary values to make it more generic
+							</li>
+							<li data-i18n="list-5">
+								Curry functions to reduce the arguments and simplify code
+							</li>
+							<li data-i18n="list-6">
+								Reorganize your modules, externalize generic functions
+							</li>
+						</ol>
 						<p data-i18n="text-2">Let's start from this code example:</p>
 						<pre style="font-size: 80%"><code class="javascript hljs js" data-trim contenteditable="true">
 import data from "users.json"
@@ -2518,7 +2568,7 @@ const results = printUsersOverAge18(data)
 					<section id="functional-refactoring-in-practice-4">
 						<h3 data-i18n="title">Functional refactoring in practice</h3>
 						<div class="note" data-i18n="note-1"><b>Step 3: decompose logic in pure, composable functions</b></div>
-						<pre style="font-size: 80%"><code class="javascript hljs js" data-trim contenteditable="true">
+						<pre style="font-size: 75%"><code class="javascript hljs js" data-trim contenteditable="true">
 import data from "users.json"
 
 function getUsersOverAge18(data){
@@ -2538,7 +2588,7 @@ document.querySelector("#results").textContent = output
 					<section id="functional-refactoring-in-practice-5">
 						<h3 data-i18n="title">Functional refactoring in practice</h3>
 						<div class="note" data-i18n="note-1"><b>Step 4: make functions generic</b><br>Pass any arbitrary value as parameter. Add arguments mapping functions if necessary.</div>
-						<pre style="font-size: 80%"><code class="javascript hljs js" data-trim contenteditable="true">
+						<pre style="font-size: 70%"><code class="javascript hljs js" data-trim contenteditable="true">
 import data from "users.json"
 import { compose } from "utils/functions.js";
 
@@ -2562,7 +2612,7 @@ document.querySelector("#results").textContent = output
 					<section id="functional-refactoring-in-practice-6">
 						<h3 data-i18n="title">Functional refactoring in practice</h3>
 						<div class="note" data-i18n="note-1"><b>Step 5: currying functions</b> to reduce the number of arguments and remove superfluous mapping functions</div>
-						<pre style="font-size: 80%"><code class="javascript hljs js" data-trim contenteditable="true">
+						<pre style="font-size: 70%"><code class="javascript hljs js" data-trim contenteditable="true">
 import data from "users.json"
 import { compose } from "utils/functions.js";
 
@@ -2587,7 +2637,7 @@ document.querySelector("#results").textContent = output
 					<section id="functional-refactoring-in-practice-7">
 						<h3 data-i18n="title">Functional refactoring in practice</h3>
 						<div class="note" data-i18n="note-1"><b>Step 6: reorganize your modules</b> ; check each decomposed function obtained to decide whether it should be in this file or moved somewhere else.</div>
-						<pre style="font-size: 75%"><code class="javascript hljs js" data-trim contenteditable="true">
+						<pre style="font-size: 70%"><code class="javascript hljs js" data-trim contenteditable="true">
 import data from "users.json"
 import { compose } from "utils/functions.js";
 
@@ -2641,43 +2691,11 @@ const results = getUsersOverAge18(data)
 const output = mapToProp("firstName", results).join("\n")
 document.querySelector("#results").textContent = output
 							</code></pre>
-							<div class="arrow left"  data-i18n="note" style="top: 310px; left: 780px; background: black; padding: 0.5em; font-size: 80%; width: 12em; border: 3px solid white;">
+							<div class="arrow left"  data-i18n="note" style="top: 310px; left: 830px; background: black; padding: 0.5em; font-size: 80%; width: 12em; border: 3px solid white;">
 								what we get at the end: pure, atomic, generic and composable functions
 							</div>
 						</div>
-					</section>
-
-					<section id="functional-refactoring-in-practice-9">
-						<h3 data-i18n="title">Functional refactoring in practice</h3>
-						<p data-i18n="text">To refactor a code and obtain pure atomic generic and composable functions:</p>
-						<img src="./assets/img/cook.png" style="float: right; width: 200px" />
-						<ol style="display: block">
-							<li data-i18n="list-1">
-								<i class="grey">Collecting ingredients</i>
-								<br>Replace non-local variables with new arguments or return values
-							</li>
-							<li data-i18n="list-2">
-								<i class="grey">Slicing</i>
-								<br>Extract and isolate side effects and mutations
-							</li>
-							<li data-i18n="list-3">
-								<i class="grey">Combine ingredients</i>
-								<br>Compose into series of pure functions
-							</li>
-							<li data-i18n="list-4">
-								<i class="grey">Boil and simmer</i>
-								<br>Extract arbitrary values to make it more generic
-							</li>
-							<li data-i18n="list-5">
-								<i class="grey">Add the spices</i>
-								<br>Curry functions to reduce the arguments and simplify code
-							</li>
-							<li data-i18n="list-6">
-								<i class="grey">Set the table</i>
-								<br>Reorganize your modules, externalize generic functions
-							</li>
-						</ol>
-						<div class="note" data-i18n="note">Over time, you will be able to make your own <b>functional toolbox</b>, a recipe book reusable in different projects.</div>
+						<div class="note info" data-i18n="note">Over time, you will be able to make your own <b>functional toolbox</b>, a recipe book reusable in different projects.</div>
 					</section>
 				</section>
 				<section>
@@ -2687,51 +2705,45 @@ document.querySelector("#results").textContent = output
 					</section>
 
 					<section id="babel-transpiler">
-						<h3 data-i18n="title">Babel transpiler</h3>
+						<h3 data-i18n="title">Transpilers</h3>
 						<ul>
-							<li data-i18n="list-1"><b>Transpiler</b> = source-to-source compiler operating on the same language, or two languages with the same level of abstraction</li>
+							<li data-i18n="list-1"><b>Transpiler</b> = source-to-source compiler operating on the same level of abstraction</li>
 							<li>
-								<img src="./assets/img/babel-logo.png" alt="Babel logo" style="float: right; margin: 0 0 1em 1em">
-								<span data-i18n="list-2">Babel is the most popular JS transpiler. It was initially called 6to5 because it converted ES6 to ES5 to get broader browser support (Internet Explorer in particular)</span>
+								<img src="./assets/img/babel-logo.png" alt="Babel logo" style="float: right; width:150px; margin: 0 0 1em 1em">
+								<span data-i18n="list-2">JavaScript transpilers are used to rewrite your JavaScript code in a way to get broader browser support. <b>Babel</b> and <b>esbuild</b> are two popular JS transpilers.</span>
 							</li>
 							<li style="clear: both">
 								<span data-i18n="list-3">Example of ES2021 → ES5 transpilation:</span>
 								<div class="cols-2">
-									<pre style="font-size: 90%"><code class="javascript hljs js" data-trim>
+									<pre style="font-size: 70%"><code class="javascript hljs js" data-trim>
 										[1, 2, 3].map(n => n ** 2);
 
 										var [a,,b] = [1, 2, 3]
 									</code></pre>
-									<pre style="font-size: 90%"><code class="javascript hljs js" data-trim>
+									<pre style="font-size: 70%"><code class="javascript hljs js" data-trim>
 										[1, 2, 3].map(function(n){
 											return Math.pow(n, 2)
 										});
 
-										var _ref = [1, 2, 3],
-											a = _ref[0],
-											b = _ref[2]
+										var _ref = [1, 2, 3], a = _ref[0], b = _ref[2]
 									</code></pre>
 								</div>
 							</li>
-							<li data-i18n="list-4">A Babel plugin exists for almost each TC39 proposal, to experiment new proposals</li>
-							<li data-i18n="list-5">Presets of Babel plugins exist for each major version of ECMAScript</li>
+							<li data-i18n="list-4">Today, transpilers are also used to experiment new TC39 proposals</li>
 						</ul>
 					</section>
 
-					<section id="babel-preset-env">
-						<h3>@babel/preset-env</h3>
-						<ul>
-							<li data-i18n="list-1">Since <a href="https://blogs.windows.com/windowsexperience/2022/06/15/internet-explorer-11-has-retired-and-is-officially-out-of-support-what-you-need-to-know/" target="_blank">Internet Explorer has retired</a> and is no longer supported by Microsoft, we got in the evergreen era of web browsers, which make most of Babel transformations no longer required.</li>
-							<li data-i18n="list-2">A new Babel preset has been created to reduce the amount of Babel transformations to just what you need based on the <a href="https://browserslist.dev/" target="_blank">list of browsers you want to support</a>.</li>							
-						</ul>
+					<section id="browserslist">
+						<h3>browserslist</h3>
+						<p data-i18n="text-1">You can configure the target environments for your app. It will determine what transformations are needed to be done by your transpiler.</p>
 
 						<p><i>package.json:</i>
 							<pre><code class="json hljs" data-trim>
 								"browserslist": "> 1%; not dead"
 							</code></pre>
 						</p>
-						<p data-i18n="text" style="text-decoration: underline;">Examples of browserslist queries:</p>
-						<ul>
+						<p data-i18n="text-2" style="text-decoration: underline;">Examples of browserslist queries:</p>
+						<ul class="left narrow">
 							<li><code>ie 6-8, Firefox >= 30, last 5 Chrome versions</code></li>
 							<li><code>cover 95% in US, cover 99% in my stats</code></li>
 							<li><code>extends browserslist-config-worldline</code></li>
@@ -2753,11 +2765,11 @@ document.querySelector("#results").textContent = output
 							<p data-i18n="text-3" style="text-decoration: underline; font-weight: bold;">Recommended:</p>
 							<ul class="narrow">
 								<li data-i18n="list-1">Transpile to a minimum in development mode</li>
-								<li data-i18n="list-2">Use preset-env to reduce the amount of transpilation</li>
-								<li data-i18n="list-3">Integrate transpilation with other existing build processes (linters, bundlers, minification...)</li>
+								<li data-i18n="list-2">Use browserslist to reduce the amount of transpilation</li>
+								<li data-i18n="list-3">Integrate transpilation within your other build processes (lint, bundle, minify...)</li>
 								<li data-i18n="list-4">Use source maps with your debugging tools</li>
 							</ul>
-							<p data-i18n="text-4">Fortunately, most of the frameworks build tooling is preconfigured like that !</p>
+							<p data-i18n="text-4">Fortunately, most of modern frameworks are preconfigured for that !</p>
 						</div>
 					</section>
 
@@ -2773,9 +2785,9 @@ document.querySelector("#results").textContent = output
 							<li data-i18n="list-5">Gradually adoptable: with type definitions (<code>*.d.ts</code> files), TypeScript can catch mistakes even without any TS-specific syntax.</li>
 							<li data-i18n="list-6">Try it online on this <a href="https://www.typescriptlang.org/play" target="_blank">playground</a></li>
 						</ul>
-						<div class="note" data-i18n="note">
-							In 10 years, TypeScript popularity has continuously grown. In 2022, it it a major part of the front-end ecosystem.<br/>
-							It is supported in all major web frameworks and improves both the developer experience and the code reliability, especially for medium-to-large apps.
+						<div class="note info" data-i18n="note">
+							In 10 years, TypeScript popularity has continuously grown. Today, it it a major part of the front-end ecosystem.<br/>
+							It is supported in all major web frameworks and improves both the developer experience and the code reliability.
 						</div>
 					</section>
 
